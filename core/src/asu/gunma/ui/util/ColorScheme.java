@@ -10,41 +10,41 @@ public class ColorScheme {
 
     private static final List<Color> springColors = Collections.unmodifiableList(
         new ArrayList<Color>() {{
-                add(new Color(151, 191, 173, 1));
-                add(new Color(255, 196, 178, 1));
-                add(new Color(255, 144, 124, 1));
-                add(new Color(216, 57, 87, 1));
-                add(new Color(105, 73, 82, 1));
+                add(new Color(0x97bfad01));
+                add(new Color(0xffc4b201));
+                add(new Color(0xff907c01));
+                add(new Color(0xd8395701));
+                add(new Color(0x69495201));
         }}
     );
 
     private static final List<Color> summerColors = Collections.unmodifiableList(
             new ArrayList<Color>() {{
-                add(new Color(23, 48, 66, 1));
-                add(new Color(35, 99, 119, 1));
-                add(new Color(207, 223, 218, 1));
-                add(new Color(123, 173, 62, 1));
-                add(new Color(74, 107, 47, 1));
+                add(new Color(0x17304201));
+                add(new Color(0x23637701));
+                add(new Color(0xcfdfda01));
+                add(new Color(0x7bad3e01));
+                add(new Color(0x4a6b2f01));
             }}
     );
 
     private static final List<Color> fallColors = Collections.unmodifiableList(
             new ArrayList<Color>() {{
-                add(new Color(217, 76, 44, 1));
-                add(new Color(237, 134, 31, 1));
-                add(new Color(244, 211, 96, 1));
-                add(new Color(168, 206, 104, 1));
-                add(new Color(27, 67, 20, 1));
+                add(new Color(0xd94c2c01));
+                add(new Color(0xed861f01));
+                add(new Color(0xf4d36001));
+                add(new Color(0xa8ce6801));
+                add(new Color(0x1b431401));
             }}
     );
 
     private static final List<Color> winterColors = Collections.unmodifiableList(
             new ArrayList<Color>() {{
-                add(new Color(130, 43, 62, 1));
-                add(new Color(234, 34, 63, 1));
-                add(new Color(104, 108, 88, 1));
-                add(new Color(0, 62, 47, 1));
-                add(new Color(37, 58, 73, 1));
+                add(new Color(0x822b3e01));
+                add(new Color(0xea223f01));
+                add(new Color(0x686c5801));
+                add(new Color(0x003e2f01));
+                add(new Color(0x253a4901));
             }}
     );
 
