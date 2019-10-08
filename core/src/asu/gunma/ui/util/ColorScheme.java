@@ -10,29 +10,41 @@ public class ColorScheme {
 
     private static final List<Color> springColors = Collections.unmodifiableList(
         new ArrayList<Color>() {{
-                add(Color.BLUE);
-                add(Color.LIME);
+                add(new Color(151, 191, 173, 1));
+                add(new Color(255, 196, 178, 1));
+                add(new Color(255, 144, 124, 1));
+                add(new Color(216, 57, 87, 1));
+                add(new Color(105, 73, 82, 1));
         }}
     );
 
     private static final List<Color> summerColors = Collections.unmodifiableList(
             new ArrayList<Color>() {{
-                add(Color.BLUE);
-                add(Color.LIME);
+                add(new Color(23, 48, 66, 1));
+                add(new Color(35, 99, 119, 1));
+                add(new Color(207, 223, 218, 1));
+                add(new Color(123, 173, 62, 1));
+                add(new Color(74, 107, 47, 1));
             }}
     );
 
     private static final List<Color> fallColors = Collections.unmodifiableList(
             new ArrayList<Color>() {{
-                add(Color.BLUE);
-                add(Color.LIME);
+                add(new Color(217, 76, 44, 1));
+                add(new Color(237, 134, 31, 1));
+                add(new Color(244, 211, 96, 1));
+                add(new Color(168, 206, 104, 1));
+                add(new Color(27, 67, 20, 1));
             }}
     );
 
     private static final List<Color> winterColors = Collections.unmodifiableList(
             new ArrayList<Color>() {{
-                add(Color.BLUE);
-                add(Color.LIME);
+                add(new Color(130, 43, 62, 1));
+                add(new Color(234, 34, 63, 1));
+                add(new Color(104, 108, 88, 1));
+                add(new Color(0, 62, 47, 1));
+                add(new Color(37, 58, 73, 1));
             }}
     );
 
