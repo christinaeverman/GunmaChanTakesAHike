@@ -27,6 +27,7 @@ import asu.gunma.DbContainers.VocabWord;
 import asu.gunma.speech.ActionResolver;
 import asu.gunma.ui.screen.game.FlashcardScreen;
 import asu.gunma.ui.screen.game.GameScreen;
+import asu.gunma.ui.util.ColorScheme;
 
 public class MainMenuScreen implements Screen {
 
@@ -93,7 +94,9 @@ public class MainMenuScreen implements Screen {
         parameter.color = Color.BLACK;
         font = generator.generateFont(parameter);
 
-        Gdx.gl.glClearColor(.8f, 1, 1, 1);
+        ColorScheme cs = new ColorScheme();
+        Color bgColor = cs.getColor2();
+        Gdx.gl.glClearColor(bgColor.r, bgColor.g, bgColor.b, bgColor.a);
         stage = new Stage();
 
         batch = new SpriteBatch();

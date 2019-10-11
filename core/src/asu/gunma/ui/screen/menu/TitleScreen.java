@@ -4,6 +4,7 @@ import asu.gunma.DatabaseInterface.DbInterface;
 import asu.gunma.DbContainers.VocabWord;
 import asu.gunma.speech.ActionResolver;
 import asu.gunma.ui.screen.menu.MainMenuScreen;
+import asu.gunma.ui.util.ColorScheme;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -90,7 +91,9 @@ public class TitleScreen implements Screen {
 
     @Override
     public void show() {
-        Gdx.gl.glClearColor(.8f, 1, 1, 1);
+        ColorScheme cs = new ColorScheme();
+        Color bgColor = cs.getColor2();
+        Gdx.gl.glClearColor(bgColor.r, bgColor.g, bgColor.b, bgColor.a);
         stage = new Stage();
 
         batch = new SpriteBatch();

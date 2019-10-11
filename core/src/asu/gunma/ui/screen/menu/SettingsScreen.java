@@ -28,6 +28,7 @@ import java.util.List;
 
 import asu.gunma.DatabaseInterface.DbInterface;
 import asu.gunma.speech.ActionResolver;
+import asu.gunma.ui.util.ColorScheme;
 
 public class SettingsScreen implements Screen {
 
@@ -77,7 +78,9 @@ public class SettingsScreen implements Screen {
 
     @Override
     public void show() {
-        Gdx.gl.glClearColor(.8f, 1, 1, 1);
+        ColorScheme cs = new ColorScheme();
+        Color bgColor = cs.getColor2();
+        Gdx.gl.glClearColor(bgColor.r, bgColor.g, bgColor.b, bgColor.a);
         stage = new Stage();
         batch = new SpriteBatch();
         texture = new Texture("title_gunma.png");
