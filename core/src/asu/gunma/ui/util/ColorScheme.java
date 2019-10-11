@@ -63,25 +63,25 @@ public class ColorScheme {
     /// Returns a list of colors for the current season.
     public List<Color> getSeasonalColorScheme() {
         if ((month == 12 && day >= 21) || month == 1 || month == 2 || (month == 3 && day < 20)) {
-            return springColors;
+            return winterColors;
         } else if ((month == 3 && day >= 20) || month == 4 || month == 5 || (month == 6 && day < 21)) {
-            return summerColors;
+            return springColors;
         } else if ((month == 6 && day >= 21) || month == 7 || month == 8 || (month == 9 && day < 23)) {
-            return fallColors;
+            return summerColors;
         }
-        return winterColors;
+        return fallColors;
     }
 
     /// Returns path to seasonal grass image asset.
     public String getSeasonalGround() {
         if ((month == 12 && day >= 21) || month == 1 || month == 2 || (month == 3 && day < 20)) {
-            return "background/grassx2.png";
+            return "background/grassx2_w.png";
         } else if ((month == 3 && day >= 20) || month == 4 || month == 5 || (month == 6 && day < 21)) {
             return "background/grassx2.png";
         } else if ((month == 6 && day >= 21) || month == 7 || month == 8 || (month == 9 && day < 23)) {
             return "background/grassx2.png";
         }
-        return "background/grassx2_w.png";
+        return "background/grassx2.png";
     }
 
     public Color getColor1() {
