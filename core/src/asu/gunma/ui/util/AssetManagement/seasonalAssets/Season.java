@@ -8,6 +8,12 @@ import java.util.Date;
 abstract public class Season {
     public static Season currentSeason = Season.getSeason();
 
+    public static Color color1 = currentSeason.color1;
+    public static Color color2 = currentSeason.color2;
+    public static Color color3 = currentSeason.color3;
+    public static Color color4 = currentSeason.color4;
+    public static Color color5 = currentSeason.color5;
+
     public static Color backgroundColor = currentSeason.backgroundColor;
 
     public static Season getSeason() {

@@ -7,8 +7,14 @@ import java.util.Date;
 
 import asu.gunma.ui.util.AssetManagement.seasonalAssets.Season;
 
-abstract public class Month {
+abstract public class Month extends Season {
     public static Month currentMonth = Month.getMonth();
+
+//    public static Color color1 = currentMonth.color1;
+//    public static Color color2 = currentMonth.color2;
+//    public static Color color3 = currentMonth.color3;
+//    public static Color color4 = currentMonth.color4;
+//    public static Color color5 = currentMonth.color5;
 
     public static Color backgroundColor = currentMonth.backgroundColor;
 
