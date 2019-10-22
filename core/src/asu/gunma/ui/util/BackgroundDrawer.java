@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.Random;
 
+import asu.gunma.ui.util.AssetManagement.GameAssets;
 import asu.gunma.ui.util.AssetManagement.monthlyAssets.Month;
 
 public class BackgroundDrawer {
@@ -38,7 +39,7 @@ public class BackgroundDrawer {
         this.batch = batch;
         this.screen_bottom_adjust = screen_bottom_adjust;
 
-        this.grass = new Texture(Month.getMonth().grassImage);
+        this.grass = new Texture(GameAssets.grassImage);
         this.mountain = new Texture("background/mountainx3.png");
         this.sky = new Texture("background/skyx2.png");
 

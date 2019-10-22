@@ -4,6 +4,8 @@ import com.badlogic.gdx.graphics.Color;
 public class Spring extends Season {
     public Color _backgroundColor = backgroundColor = Color.BLACK;
 
+    public String _grassImage = grassImage = "background/grassx2.png";
+
     public Color _color1 = color1 = new Color(0x97bfad01);
     public Color _color2 = color2 = new Color(0xffc4b201);
     public Color _color3 = color3 = new Color(0xff907c01);
