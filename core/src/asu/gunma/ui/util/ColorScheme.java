@@ -5,7 +5,11 @@ import java.util.*;
 import java.text.SimpleDateFormat;
 
 public class ColorScheme {
-    private int month;
+//    public static Month getMonth() {
+//        return new January();
+//    }
+
+    private int m;
     private int day;
 
     private static final List<Color> springColors = Collections.unmodifiableList(
@@ -56,17 +60,17 @@ public class ColorScheme {
         String monthString = formatMonth.format(currentDate);
         String dayString = formatDay.format(currentDate);
 
-        month = Integer.parseInt(monthString);
+        m = Integer.parseInt(monthString);
         day = Integer.parseInt(dayString);
     }
 
     /// Returns a list of colors for the current season.
     public List<Color> getSeasonalColorScheme() {
-        if ((month == 12 && day >= 21) || month == 1 || month == 2 || (month == 3 && day < 20)) {
+        if ((m == 12 && day >= 21) || m == 1 || m == 2 || (m == 3 && day < 20)) {
             return winterColors;
-        } else if ((month == 3 && day >= 20) || month == 4 || month == 5 || (month == 6 && day < 21)) {
+        } else if ((m == 3 && day >= 20) || m == 4 || m == 5 || (m == 6 && day < 21)) {
             return springColors;
-        } else if ((month == 6 && day >= 21) || month == 7 || month == 8 || (month == 9 && day < 23)) {
+        } else if ((m == 6 && day >= 21) || m == 7 || m == 8 || (m == 9 && day < 23)) {
             return summerColors;
         }
         return fallColors;
@@ -74,11 +78,11 @@ public class ColorScheme {
 
     /// Returns path to seasonal grass image asset.
     public String getSeasonalGround() {
-        if ((month == 12 && day >= 21) || month == 1 || month == 2 || (month == 3 && day < 20)) {
+        if ((m == 12 && day >= 21) || m == 1 || m == 2 || (m == 3 && day < 20)) {
             return "background/grassx2_w.png";
-        } else if ((month == 3 && day >= 20) || month == 4 || month == 5 || (month == 6 && day < 21)) {
+        } else if ((m == 3 && day >= 20) || m == 4 || m == 5 || (m == 6 && day < 21)) {
             return "background/grassx2.png";
-        } else if ((month == 6 && day >= 21) || month == 7 || month == 8 || (month == 9 && day < 23)) {
+        } else if ((m == 6 && day >= 21) || m == 7 || m == 8 || (m == 9 && day < 23)) {
             return "background/grassx2.png";
         }
         return "background/grassx2.png";

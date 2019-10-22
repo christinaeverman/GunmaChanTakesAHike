@@ -1,10 +1,11 @@
 package asu.gunma.ui.util;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.Random;
+
+import asu.gunma.ui.util.AssetManagement.monthlyAssets.Month;
 
 public class BackgroundDrawer {
 
@@ -37,8 +38,7 @@ public class BackgroundDrawer {
         this.batch = batch;
         this.screen_bottom_adjust = screen_bottom_adjust;
 
-        ColorScheme cs = new ColorScheme();
-        this.grass = new Texture(cs.getSeasonalGround());
+        this.grass = new Texture(Month.getMonth().grassImage);
         this.mountain = new Texture("background/mountainx3.png");
         this.sky = new Texture("background/skyx2.png");
 
