@@ -24,6 +24,9 @@ import java.util.ArrayList;
 
 import asu.gunma.DatabaseInterface.DbInterface;
 import asu.gunma.DbContainers.VocabWord;
+import asu.gunma.MiniGames.Controllers.WordScrambleGameController;
+import asu.gunma.MiniGames.Models.WordScrambleGame;
+import asu.gunma.MiniGames.Views.WordScrambleGameView;
 import asu.gunma.speech.ActionResolver;
 import asu.gunma.ui.screen.game.FlashcardScreen;
 import asu.gunma.ui.screen.game.GameScreen;
@@ -55,7 +58,7 @@ public class MainMenuScreen implements Screen {
         This is based on the Project Proposal, I'd like to change this
         before the final release.
      */
-    private TextButton buttonTutorial, buttonFlashcard, buttonGameFirst, buttonOptionMenu;
+    private TextButton buttonTutorial, buttonFlashcard, buttonGameFirst, buttonMiniGameFirst, buttonOptionMenu;
 
     private SpriteBatch batch;
     private Texture texture;
@@ -119,6 +122,7 @@ public class MainMenuScreen implements Screen {
         buttonTutorial = new TextButton("Video Tutorials", textButtonStyle);
         buttonFlashcard = new TextButton("Flashcards", textButtonStyle);
         buttonGameFirst = new TextButton("Game #1", textButtonStyle);
+        buttonMiniGameFirst = new TextButton("Minigame #1", textButtonStyle);
         buttonOptionMenu = new TextButton("Options Menu", textButtonStyle);
 
 
@@ -134,6 +138,7 @@ public class MainMenuScreen implements Screen {
         buttonTutorial.pad(20);
         buttonFlashcard.pad(20);
         buttonGameFirst.pad(20);
+        buttonMiniGameFirst.pad(20);
         buttonOptionMenu.pad(20);
 
 
@@ -170,6 +175,20 @@ public class MainMenuScreen implements Screen {
 
             }
         });
+        buttonMiniGameFirst.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                gameMusic.pause();
+                gameMusic.dispose();
+                //play GameFirst music
+                // gameMusic = new Music
+                WordScrambleGame wordScrambleModel = new WordScrambleGame(game, speechGDX, gameMusic, dbCallback, game.getScreen(), activeVList, prefs);
+                WordScrambleGameView wordScrambleView = new WordScrambleGameView();
+                game.setScreen(wordScrambleModel);
+                WordScrambleGameController wordScrambleController = new WordScrambleGameController(wordScrambleModel, wordScrambleView);
+                wordScrambleController.scramble();
+            }
+        });
         buttonOptionMenu.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -190,6 +209,8 @@ public class MainMenuScreen implements Screen {
         table.add(buttonFlashcard);
         table.row();
         table.add(buttonGameFirst);
+        table.row();
+        table.add(buttonMiniGameFirst);
         table.row();
         table.add(buttonOptionMenu);
         table.row();
