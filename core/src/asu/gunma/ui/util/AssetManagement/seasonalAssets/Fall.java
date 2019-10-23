@@ -4,7 +4,9 @@ import com.badlogic.gdx.graphics.Color;
 public class Fall extends Season {
     public Color _backgroundColor = backgroundColor = Color.OLIVE;
 
-    public String _grassImage = grassImage = "background/grassx2.png";
+    public String _grassImage = grassImagePath = "background/grassx2.png";
+    public String _mountainImage = mountainImagePath = "background/mountainx3_f.png";
+
 
     public Color _color1 = color1 = new Color(0xd94c2c01);
     public Color _color2 = color2 = new Color(0xed861f01);

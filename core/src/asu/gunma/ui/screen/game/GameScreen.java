@@ -31,6 +31,7 @@ import asu.gunma.DbContainers.VocabWord;
 import asu.gunma.speech.ActionResolver;
 import asu.gunma.ui.screen.menu.MainMenuScreen;
 import asu.gunma.ui.util.Animator;
+import asu.gunma.ui.util.AssetManagement.GameAssets;
 import asu.gunma.ui.util.BackgroundDrawer;
 import asu.gunma.ui.util.GradeSystem;
 import asu.gunma.ui.util.lives.LivesDrawer;
@@ -133,7 +134,7 @@ public class GameScreen implements Screen {
         this.previousScreen = previous;
         this.gameMusic = music;
         this.activeVList = activeList;
-        gameMusic = Gdx.audio.newMusic(Gdx.files.internal("IntroMusic.mp3"));
+        gameMusic = Gdx.audio.newMusic(Gdx.files.internal(GameAssets.introMusicPath));
         gameMusic.setLooping(false);
         gameMusic.setVolume(masterVolume);
         gameMusic.play();
@@ -150,17 +151,17 @@ public class GameScreen implements Screen {
         stage = new Stage();
 
         batch = new SpriteBatch();
-        gunmaSprite = new Texture("sprite_gunma.png");
-        this.gunmaFaintedSprite = new Texture("gunma_fainted.png");
+        gunmaSprite = new Texture(GameAssets.gunmaSpritePath);
+        this.gunmaFaintedSprite = new Texture(GameAssets.gunmaFaintedSpritePath);
         //onionIdleSprite = new Texture("")
 
-        background = new Texture("BG_temp.png");
+        background = new Texture(GameAssets.backgroundImagePath);
         backgroundDrawer = new BackgroundDrawer(this.batch, this.SCREEN_BOTTOM_ADJUST);
         this.livesDrawer = new LivesDrawer(this.batch);
 
         // Animation initializations
-        this.onionWalkAnimation = new Animator("onion_sheet.png", 4, 2, 0.1f);
-        this.gunmaWalkAnimation = new Animator("gunma_sheet.png", 8, 1, 0.1f);
+        this.onionWalkAnimation = new Animator(GameAssets.onionWalkAnimationPath, 4, 2, 0.1f);
+        this.gunmaWalkAnimation = new Animator(GameAssets.gunmaWalkAnimationPath, 8, 1, 0.1f);
 
         // Game feedback
         this.correctSprite = new Texture("background/correct.png");
@@ -277,7 +278,7 @@ public class GameScreen implements Screen {
                 speechGDX.stopRecognition();
                 isPaused = true;
                 gameMusic.dispose();
-                gameMusic = Gdx.audio.newMusic(Gdx.files.internal("IntroMusic.mp3"));
+                gameMusic = Gdx.audio.newMusic(Gdx.files.internal(GameAssets.introMusicPath));
                 gameMusic.setLooping(false);
                 gameMusic.setVolume(masterVolume);
                 gameMusic.play();

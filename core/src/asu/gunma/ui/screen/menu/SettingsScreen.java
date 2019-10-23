@@ -70,7 +70,7 @@ public class SettingsScreen implements Screen {
         this.dbInterface = dbInterface;
         this.previousScreen = previousScreen;
         this.gameMusic = music;
-        gameMusic = Gdx.audio.newMusic(Gdx.files.internal("IntroMusic.mp3"));
+        gameMusic = Gdx.audio.newMusic(Gdx.files.internal(GameAssets.introMusicPath));
         gameMusic.setLooping(false);
         gameMusic.setVolume(masterVolume);
         gameMusic.play();

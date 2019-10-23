@@ -3,7 +3,9 @@ package asu.gunma.ui.util.AssetManagement.seasonalAssets;
 import com.badlogic.gdx.graphics.Color;
 
 public class Winter extends Season {
-    public String _grassImage = grassImage = "background/grassx2_w.png";
+    public String _grassImage = grassImagePath = "background/grassx2_w.png";
+    public String _mountainImage = mountainImagePath = "background/mountainx3_w.png";
+
     public Color _color1 = color1 = new Color(0x822b3e01);
     public Color _color2 = color2 = new Color(0xea223f01);
     public Color _color3 = color3 = new Color(0x686c5801);

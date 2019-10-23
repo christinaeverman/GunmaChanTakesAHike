@@ -5,6 +5,13 @@ import asu.gunma.ui.util.AssetManagement.seasonalAssets.Season;
 import com.badlogic.gdx.graphics.Color;
 
 public class GameAssets extends Month {
+
+    public static String gunmaSpritePath = "sprite_gunma.png";
+    public static String gunmaFaintedSpritePath = "gunma_fainted.png";
+    public static String backgroundImagePath = "BG_temp.png";
+    public static String onionWalkAnimationPath = "onion_sheet.png";
+    public static String gunmaWalkAnimationPath = "gunma_sheet.png";
+    public static String introMusicPath = "IntroMusic.mp3";
 //    private static Month month = Month.getMonth();
 
 //    public static Color backgroundColor = Color.WHITE;

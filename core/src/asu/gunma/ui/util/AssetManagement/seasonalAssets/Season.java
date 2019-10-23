@@ -8,7 +8,8 @@ import java.util.Date;
 abstract public class Season {
     public static Season currentSeason = Season.getSeason();
 
-    public static String grassImage = currentSeason.grassImage;
+    public static String grassImagePath = currentSeason.grassImagePath;
+    public static String mountainImagePath = currentSeason.mountainImagePath;
 
     public static Color color1 = currentSeason.color1;
     public static Color color2 = currentSeason.color2;

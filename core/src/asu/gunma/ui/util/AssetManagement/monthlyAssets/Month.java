@@ -18,7 +18,7 @@ abstract public class Month extends Season {
 
     public static Color backgroundColor = currentMonth.backgroundColor;
 
-//    public String grassImage;
+//    public String grassImagePath;
 
 //    public static Season season = Season.getSeason();
 

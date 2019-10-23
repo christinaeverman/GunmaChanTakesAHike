@@ -4,7 +4,9 @@ import com.badlogic.gdx.graphics.Color;
 
 public class Summer extends Season {
 
-    public String _grassImage = grassImage = "background/grassx2.png";
+    public String _grassImage = grassImagePath = "background/grassx2.png";
+    public String _mountainImage = mountainImagePath = "background/mountainx3.png";
+
     public Color _color1 = color1 = new Color(0x17304201);
     public Color _color2 = color2 = new Color(0x23637701);
     public Color _color3 = color3 = new Color(0xcfdfda01);

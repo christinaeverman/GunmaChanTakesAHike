@@ -103,7 +103,7 @@ public class FlashcardScreen implements Screen {
         this.dbCallback = dbCallback;
         this.previousScreen = previousScreen;
         this.vocabWordArrayList = arrayList;
-        gameMusic = Gdx.audio.newMusic(Gdx.files.internal("IntroMusic.mp3"));
+        gameMusic = Gdx.audio.newMusic(Gdx.files.internal(GameAssets.introMusicPath));
         gameMusic.setLooping(false);
         gameMusic.setVolume(masterVolume);
         gameMusic.play();
@@ -316,7 +316,7 @@ public class FlashcardScreen implements Screen {
         backButton.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
                 gameMusic.dispose();
-                gameMusic = Gdx.audio.newMusic(Gdx.files.internal("IntroMusic.mp3"));
+                gameMusic = Gdx.audio.newMusic(Gdx.files.internal(GameAssets.introMusicPath));
                 gameMusic.setLooping(false);
                 gameMusic.setVolume(masterVolume);
                 gameMusic.play();
