@@ -45,10 +45,12 @@ public class WordScrambleGameController
 
             while (charList.size() != 0)
             {
-                int random = (int)Math.random() * charList.size();
+                int random = (int)(Math.random() * charList.size());
+
                 scrambledWord.append(charList.remove(random));
             }
             String scrambledWordString = scrambledWord.toString();
+            System.out.println(scrambledWordString);
             scrambledList.set(i, scrambledWordString);
             //scrambledList.add(scrambledWord);
         }
@@ -57,7 +59,7 @@ public class WordScrambleGameController
 
         for (String itr : model.getScrambledList())
         {
-            System.out.println(itr);
+            //System.out.println(itr);
         }
     }
 }
