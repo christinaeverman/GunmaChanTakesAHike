@@ -21,33 +21,43 @@ public class WordScrambleGameController
     // scramble each word in the vocab list
     public void scramble()
     {
-        // change to ArrayList of Strings
-        ArrayList<VocabWord> scrambledWordList = new ArrayList<VocabWord>(model.getActiveVocabList());
+        // We only need the string containing the English spelling of each vocab word, not the VocabWord object
+        ArrayList<VocabWord> scrambledVocabWordList = new ArrayList<VocabWord>(model.getActiveVocabList());
+        ArrayList<String> scrambledList = new ArrayList<String>();
+
+        // add English spelling of all words to ArrayList
+        for (VocabWord itr : scrambledVocabWordList)
+        {
+            scrambledList.add(itr.getEngSpelling());
+        }
 
         // iterate through vocab list
-        for (VocabWord itr : scrambledWordList)
+        for (int i = 0; i < scrambledList.size(); i++)
         {
             ArrayList<Character> charList = new ArrayList<Character>();
 
-            for (char letter : itr.getEngSpelling().toCharArray())
+            for (char letter : scrambledList.get(i).toCharArray())
             {
                 charList.add(letter);
             }
 
-            StringBuilder scrambledWord = new StringBuilder(itr.getEngSpelling());
+            StringBuilder scrambledWord = new StringBuilder();
 
             while (charList.size() != 0)
             {
                 int random = (int)Math.random() * charList.size();
                 scrambledWord.append(charList.remove(random));
             }
+            String scrambledWordString = scrambledWord.toString();
+            scrambledList.set(i, scrambledWordString);
+            //scrambledList.add(scrambledWord);
         }
 
-        model.setScrambledWordList(scrambledWordList);
+        model.setScrambledList(scrambledList);
 
-        for (VocabWord itr : model.getScrambledWordList())
+        for (String itr : model.getScrambledList())
         {
-            System.out.println(itr.toString());
+            System.out.println(itr);
         }
     }
 }

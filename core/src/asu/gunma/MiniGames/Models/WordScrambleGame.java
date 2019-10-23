@@ -27,7 +27,7 @@ public class WordScrambleGame implements Screen
     private String displayWord;
     private List<VocabWord> dbListWords;
     private ArrayList<VocabWord> activeVocabList; // list of words that may be included in the mini-game
-    private ArrayList<VocabWord> scrambledWordList; // list of individual words in their scrambled form
+    private ArrayList<String> scrambledList; // list of individual words in their scrambled form
     protected int numWords; // number of words to be included in the mini-game (maybe 10-20 words per mini-game?)
 
     private boolean isGameOver;
@@ -57,9 +57,9 @@ public class WordScrambleGame implements Screen
         return activeVocabList;
     }
 
-    public ArrayList<VocabWord> getScrambledWordList()
+    public ArrayList<String> getScrambledList()
     {
-        return scrambledWordList;
+        return scrambledList;
     }
 
     public void setScore(int score)
@@ -72,9 +72,9 @@ public class WordScrambleGame implements Screen
         this.numWords = numWords;
     }
 
-    public void setScrambledWordList(ArrayList<VocabWord> scrambledList)
+    public void setScrambledList(ArrayList<String> scrambledList)
     {
-        scrambledWordList = new ArrayList<VocabWord>(scrambledList);
+        this.scrambledList = new ArrayList<String>(scrambledList);
     }
 
     @Override
