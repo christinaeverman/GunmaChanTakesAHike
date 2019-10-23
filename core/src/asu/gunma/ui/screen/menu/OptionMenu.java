@@ -36,6 +36,7 @@ import java.util.List;
 
 import asu.gunma.DatabaseInterface.DbInterface;
 import asu.gunma.speech.ActionResolver;
+import asu.gunma.ui.util.AssetManagement.GameAssets;
 import asu.gunma.ui.util.ColorScheme;
 
 public class OptionMenu implements Screen {
@@ -156,8 +157,7 @@ public class OptionMenu implements Screen {
         font.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
 
         //font file
-        final String FONT_PATH = "irohamaru-mikami-Regular.ttf";
-        generator = new FreeTypeFontGenerator(Gdx.files.internal(FONT_PATH));
+        generator = new FreeTypeFontGenerator(Gdx.files.internal(GameAssets.fontPath));
 
         //font for vocab word
         parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();

@@ -40,13 +40,13 @@ public class BackgroundDrawer {
 
         this.grass = new Texture(GameAssets.grassImagePath);
         this.mountain = new Texture(GameAssets.mountainImagePath);
-        this.sky = new Texture("background/skyx2.png");
+        this.sky = new Texture(GameAssets.skyImagePath);
 
-        this.cloudA1 = new Texture("background/cloud1.png");
-        this.cloudA2 = new Texture("background/cloud1.png");
-        this.cloudB1 = new Texture("background/cloud2.png");
-        this.cloudB2 = new Texture("background/cloud2.png");
-        this.cloudB3 = new Texture("background/cloud2.png");
+        this.cloudA1 = new Texture(GameAssets.cloud1Path);
+        this.cloudA2 = new Texture(GameAssets.cloud1Path);
+        this.cloudB1 = new Texture(GameAssets.cloud2Path);
+        this.cloudB2 = new Texture(GameAssets.cloud2Path);
+        this.cloudB3 = new Texture(GameAssets.cloud2Path);
 
         this.random = new Random();
         this.grassPosition = 0.0;

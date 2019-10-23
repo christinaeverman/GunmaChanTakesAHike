@@ -30,6 +30,7 @@ import asu.gunma.DatabaseInterface.DbInterface;
 import asu.gunma.DbContainers.VocabWord;
 import asu.gunma.speech.ActionResolver;
 import asu.gunma.ui.screen.menu.MainMenuScreen;
+import asu.gunma.ui.util.AssetManagement.GameAssets;
 import asu.gunma.ui.util.ColorScheme;
 import asu.gunma.ui.util.SimpleDirectionGestureDetector;
 import asu.gunma.ui.util.GradeSystem;
@@ -111,8 +112,7 @@ public class FlashcardScreen implements Screen {
 
     @Override
     public void show() {
-        ColorScheme cs = new ColorScheme();
-        Color bgColor = cs.getColor2();
+        Color bgColor = GameAssets.backgroundColor;
         Gdx.gl.glClearColor(bgColor.r, bgColor.g, bgColor.b, bgColor.a);
         stage = new Stage();
         batch = new SpriteBatch();
@@ -129,8 +129,7 @@ public class FlashcardScreen implements Screen {
         greenCircle = new Texture("greenCircle.png");
         redX = new Texture("redX.png");
 
-        final String FONT_PATH = "irohamaru-mikami-Regular.ttf";
-        generator = new FreeTypeFontGenerator(Gdx.files.internal(FONT_PATH));
+        generator = new FreeTypeFontGenerator(Gdx.files.internal(GameAssets.fontPath));
         //font for vocab word
         parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
 

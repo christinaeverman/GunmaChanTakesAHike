@@ -27,6 +27,7 @@ import asu.gunma.DbContainers.VocabWord;
 import asu.gunma.speech.ActionResolver;
 import asu.gunma.ui.screen.game.FlashcardScreen;
 import asu.gunma.ui.screen.game.GameScreen;
+import asu.gunma.ui.util.AssetManagement.GameAssets;
 import asu.gunma.ui.util.ColorScheme;
 
 public class MainMenuScreen implements Screen {
@@ -81,8 +82,7 @@ public class MainMenuScreen implements Screen {
     @Override
     public void show() {
         //font file
-        final String FONT_PATH = "irohamaru-mikami-Regular.ttf";
-        generator = new FreeTypeFontGenerator(Gdx.files.internal(FONT_PATH));
+        generator = new FreeTypeFontGenerator(Gdx.files.internal(GameAssets.fontPath));
 
         //font for vocab word
         parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();

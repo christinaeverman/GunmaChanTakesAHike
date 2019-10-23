@@ -28,6 +28,7 @@ import java.util.List;
 
 import asu.gunma.DatabaseInterface.DbInterface;
 import asu.gunma.speech.ActionResolver;
+import asu.gunma.ui.util.AssetManagement.GameAssets;
 import asu.gunma.ui.util.ColorScheme;
 
 public class SettingsScreen implements Screen {
@@ -120,8 +121,7 @@ public class SettingsScreen implements Screen {
         googleLogoutButton.getLabel().setAlignment(Align.center);
 
         //font file
-        final String FONT_PATH = "irohamaru-mikami-Regular.ttf";
-        generator = new FreeTypeFontGenerator(Gdx.files.internal(FONT_PATH));
+        generator = new FreeTypeFontGenerator(Gdx.files.internal(GameAssets.fontPath));
 
         //font for vocab word
         parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();

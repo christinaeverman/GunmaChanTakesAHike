@@ -164,8 +164,8 @@ public class GameScreen implements Screen {
         this.gunmaWalkAnimation = new Animator(GameAssets.gunmaWalkAnimationPath, 8, 1, 0.1f);
 
         // Game feedback
-        this.correctSprite = new Texture("background/correct.png");
-        this.incorrectSprite = new Texture("background/incorrect.png");
+        this.correctSprite = new Texture(GameAssets.correctSpritePath);
+        this.incorrectSprite = new Texture(GameAssets.incorrectSpritePath);
 
         // Spawning variables
         this.enemyPosition = Gdx.graphics.getWidth();
@@ -182,8 +182,7 @@ public class GameScreen implements Screen {
         table.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
         //font file
-        final String FONT_PATH = "irohamaru-mikami-Regular.ttf";
-        generator = new FreeTypeFontGenerator(Gdx.files.internal(FONT_PATH));
+        generator = new FreeTypeFontGenerator(Gdx.files.internal(GameAssets.fontPath));
 
         //font for vocab word
         parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();

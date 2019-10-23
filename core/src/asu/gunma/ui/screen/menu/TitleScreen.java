@@ -4,6 +4,7 @@ import asu.gunma.DatabaseInterface.DbInterface;
 import asu.gunma.DbContainers.VocabWord;
 import asu.gunma.speech.ActionResolver;
 import asu.gunma.ui.screen.menu.MainMenuScreen;
+import asu.gunma.ui.util.AssetManagement.GameAssets;
 import asu.gunma.ui.util.ColorScheme;
 
 import com.badlogic.gdx.Game;
@@ -78,8 +79,7 @@ public class TitleScreen implements Screen {
         this.gameMusic = music;
         this.activeVList = arrayList;
         //font file
-        final String FONT_PATH = "irohamaru-mikami-Regular.ttf";
-        generator = new FreeTypeFontGenerator(Gdx.files.internal(FONT_PATH));
+        generator = new FreeTypeFontGenerator(Gdx.files.internal(GameAssets.fontPath));
 
         //font for vocab word
         parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
