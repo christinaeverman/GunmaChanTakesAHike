@@ -187,6 +187,11 @@ public class MainMenuScreen implements Screen {
                 WordScrambleGameView wordScrambleView = new WordScrambleGameView();
                 game.setScreen(wordScrambleModel);
                 WordScrambleGameController wordScrambleController = new WordScrambleGameController(wordScrambleModel, wordScrambleView);
+
+                System.out.println("PRINTING ACTIVE VOCAB LIST!");
+                for (VocabWord itr : wordScrambleModel.getActiveVocabList())
+                    System.out.println(itr.getEngSpelling());
+
                 wordScrambleController.scramble();
             }
         });
