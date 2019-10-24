@@ -18,6 +18,11 @@ public class WordScrambleGameController
         this.view = view;
     }
 
+    public void increaseScore()
+    {
+        model.setScore(model.getScore()+ 1);
+    }
+
     // scramble each word in the vocab list
     public void scramble()
     {
@@ -36,30 +41,51 @@ public class WordScrambleGameController
         {
             ArrayList<Character> charList = new ArrayList<Character>();
 
+            // add all letters of a single word to the ArrayList
             for (char letter : scrambledList.get(i).toCharArray())
             {
-                charList.add(letter);
+                // check for space
+                if (letter != ' ')
+                {
+                    // add letter to ArrayList of chars
+                    charList.add(letter);
+                }
             }
 
             StringBuilder scrambledWord = new StringBuilder();
+            int index = 0;
 
+            // add letters at random to the string to create a scrambled word
             while (charList.size() != 0)
             {
                 int random = (int)(Math.random() * charList.size());
 
-                scrambledWord.append(charList.remove(random));
+                // keep the space where it is if the vocab consists of more than 1 word
+                if (scrambledList.get(i).charAt(index) == ' ')
+                {
+                    scrambledWord.append(' ');
+                }
+                else
+                {
+                    scrambledWord.append(charList.remove(random));
+                }
+
+                index++;
             }
+
             String scrambledWordString = scrambledWord.toString();
-            System.out.println(scrambledWordString);
             scrambledList.set(i, scrambledWordString);
-            //scrambledList.add(scrambledWord);
         }
 
+        // set the model's scrambledList to the list of scrambled words
         model.setScrambledList(scrambledList);
 
+        // prints the full list of scrambled words for debugging purposes
+        /*
         for (String itr : model.getScrambledList())
         {
-            //System.out.println(itr);
+            System.out.println(itr);
         }
+        */
     }
 }

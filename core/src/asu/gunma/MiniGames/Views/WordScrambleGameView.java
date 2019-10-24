@@ -1,8 +1,8 @@
 package asu.gunma.MiniGames.Views;
 
-import asu.gunma.MiniGames.Controllers.WordScrambleGameController;
-
+// Use this class for the front-end of the word scramble mini-game
+// You'll want to use the WordScrambleGameController class
 public class WordScrambleGameView
 {
-
+    // Insert code here
 }

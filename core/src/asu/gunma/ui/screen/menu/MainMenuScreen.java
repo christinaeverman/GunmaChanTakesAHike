@@ -175,6 +175,7 @@ public class MainMenuScreen implements Screen {
 
             }
         });
+        // we can change where this button is located on the main menu or elsewhere, but I put this in for debugging purposes
         buttonMiniGameFirst.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {

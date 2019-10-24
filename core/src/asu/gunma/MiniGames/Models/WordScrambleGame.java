@@ -1,10 +1,15 @@
 package asu.gunma.MiniGames.Models;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,9 +33,17 @@ public class WordScrambleGame implements Screen
     private List<VocabWord> dbListWords;
     private ArrayList<VocabWord> activeVocabList; // list of words that may be included in the mini-game
     private ArrayList<String> scrambledList; // list of individual words in their scrambled form
-    protected int numWords; // number of words to be included in the mini-game (maybe 10-20 words per mini-game?)
+    protected int numWords; // number of words to be included in the mini-game (maybe not needed)
 
-    private boolean isGameOver;
+    boolean isPaused = false;
+
+    // UI variables
+    SpriteBatch batch;
+    Stage stage;
+    private GlyphLayout displayWordLayout;
+    private BitmapFont font;
+    FreeTypeFontGenerator generator;
+    FreeTypeFontGenerator.FreeTypeFontParameter parameter;
 
     public WordScrambleGame(Game game, ActionResolver speechGDX, Music music, DbInterface dbCallback, Screen previous, ArrayList<VocabWord> activeList, Preferences prefs)
     {
@@ -45,11 +58,6 @@ public class WordScrambleGame implements Screen
     public int getScore()
     {
         return score;
-    }
-
-    public int numWords()
-    {
-        return numWords;
     }
 
     public ArrayList<VocabWord> getActiveVocabList()
@@ -67,26 +75,42 @@ public class WordScrambleGame implements Screen
         this.score = score;
     }
 
-    public void setNumWords(int numWords)
-    {
-        this.numWords = numWords;
-    }
-
     public void setScrambledList(ArrayList<String> scrambledList)
     {
         this.scrambledList = new ArrayList<String>(scrambledList);
     }
 
+    // Override Screen class methods
     @Override
     public void show()
     {
-        // Insert word scramble mini-game UI here
+        Gdx.gl.glClearColor(1, .8f, 1, 1);
+        stage = new Stage();
+        batch = new SpriteBatch();
+        Gdx.input.setInputProcessor(stage);
+        /*
+        final String FONT_PATH = "irohamaru-mikami-Regular.ttf";
+        generator = new FreeTypeFontGenerator(Gdx.files.internal(FONT_PATH));
+        //font for vocab word
+        parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+
+        parameter.characters = displayWord;
+        parameter.size = 70;
+        parameter.color = Color.BLACK;
+        font = new BitmapFont();
+        font = generator.generateFont(parameter);
+        */
     }
 
     @Override
     public void render(float delta)
     {
+        batch.begin();
+        //font.draw(batch, displayWordLayout, 300, 350);
 
+        batch.end();
+        stage.act(delta); // optional to pass delta value
+        stage.draw();
     }
 
     @Override
@@ -116,6 +140,8 @@ public class WordScrambleGame implements Screen
     @Override
     public void dispose()
     {
-
+        //font.dispose();
+        batch.dispose();
+        stage.dispose();
     }
 }
