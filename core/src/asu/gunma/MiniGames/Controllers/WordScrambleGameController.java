@@ -81,11 +81,11 @@ public class WordScrambleGameController
         model.setScrambledList(scrambledList);
 
         // prints the full list of scrambled words for debugging purposes
-        /*
+
         for (String itr : model.getScrambledList())
         {
             System.out.println(itr);
         }
-        */
+
     }
 }

@@ -191,6 +191,8 @@ public class MainMenuScreen implements Screen {
                 System.out.println("PRINTING ACTIVE VOCAB LIST!");
                 for (VocabWord itr : wordScrambleModel.getActiveVocabList())
                     System.out.println(itr.getEngSpelling());
+                //for (String itr : wordScrambleController.WordScrambleModel.getscrambledList())
+                //    System.out.println(itr.getEngSpelling());
 
                 wordScrambleController.scramble();
             }
