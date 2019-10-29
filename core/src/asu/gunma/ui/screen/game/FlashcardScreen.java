@@ -5,20 +5,16 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
@@ -31,8 +27,6 @@ import asu.gunma.DbContainers.VocabWord;
 import asu.gunma.speech.ActionResolver;
 import asu.gunma.ui.screen.menu.MainMenuScreen;
 import asu.gunma.ui.util.AssetManagement.GameAssets;
-import asu.gunma.ui.util.ColorScheme;
-import asu.gunma.ui.util.SimpleDirectionGestureDetector;
 import asu.gunma.ui.util.GradeSystem;
 
 
@@ -126,8 +120,8 @@ public class FlashcardScreen implements Screen {
         konjackun = new Texture("konjackun.jpg");
         negisan = new Texture("negisan.png");
         index_card = new Texture("index_card.png");*/
-        greenCircle = new Texture("greenCircle.png");
-        redX = new Texture("redX.png");
+        greenCircle = new Texture(GameAssets.greenCirclePath);
+        redX = new Texture(GameAssets.redXPath);
 
         generator = new FreeTypeFontGenerator(Gdx.files.internal(GameAssets.fontPath));
         //font for vocab word

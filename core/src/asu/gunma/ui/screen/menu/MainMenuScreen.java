@@ -28,7 +28,6 @@ import asu.gunma.speech.ActionResolver;
 import asu.gunma.ui.screen.game.FlashcardScreen;
 import asu.gunma.ui.screen.game.GameScreen;
 import asu.gunma.ui.util.AssetManagement.GameAssets;
-import asu.gunma.ui.util.ColorScheme;
 
 public class MainMenuScreen implements Screen {
 
@@ -94,13 +93,12 @@ public class MainMenuScreen implements Screen {
         parameter.color = Color.BLACK;
         font = generator.generateFont(parameter);
 
-        ColorScheme cs = new ColorScheme();
-        Color bgColor = cs.getColor2();
+        Color bgColor = GameAssets.backgroundColor;
         Gdx.gl.glClearColor(bgColor.r, bgColor.g, bgColor.b, bgColor.a);
         stage = new Stage();
 
         batch = new SpriteBatch();
-        texture = new Texture("title_gunma.png");
+        texture = new Texture(GameAssets.titleGunmaPath);
 
         Gdx.input.setInputProcessor(stage);
 
@@ -111,12 +109,14 @@ public class MainMenuScreen implements Screen {
         table = new Table();
         table.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
+        Skin skin = GameAssets.getColorSkin(GameAssets.color2, "color2");
         TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
         //textButtonStyle.up = skin.getDrawable("button.up");
         //textButtonStyle.down = skin.getDrawable("button.down");
         textButtonStyle.pressedOffsetX = 1;
         textButtonStyle.pressedOffsetY = -1;
         textButtonStyle.font = font;
+        textButtonStyle.up = skin.newDrawable("color2", GameAssets.color2);
 
         // IMPORTANT: needs localization support
         buttonTutorial = new TextButton("Video Tutorials", textButtonStyle);
@@ -186,13 +186,13 @@ public class MainMenuScreen implements Screen {
         });
 
 
-        table.add(heading);
+        table.add(heading).padBottom(15);
         table.row();
-        table.add(buttonTutorial);
+        table.add(buttonTutorial).padBottom(15);
         table.row();
-        table.add(buttonFlashcard);
+        table.add(buttonFlashcard).padBottom(15);
         table.row();
-        table.add(buttonGameFirst);
+        table.add(buttonGameFirst).padBottom(15);
         table.row();
         table.add(buttonOptionMenu);
         table.row();

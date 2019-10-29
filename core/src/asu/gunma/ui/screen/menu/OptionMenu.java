@@ -24,20 +24,15 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 
-import com.badlogic.gdx.utils.Array;
 import asu.gunma.DatabaseInterface.DbInterface;
 import asu.gunma.DbContainers.VocabWord;
 import asu.gunma.speech.ActionResolver;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
-import asu.gunma.DatabaseInterface.DbInterface;
-import asu.gunma.speech.ActionResolver;
 import asu.gunma.ui.util.AssetManagement.GameAssets;
-import asu.gunma.ui.util.ColorScheme;
 
 public class OptionMenu implements Screen {
 
@@ -126,12 +121,11 @@ public class OptionMenu implements Screen {
     @Override
     public void show() {
         int count = 0;
-        ColorScheme cs = new ColorScheme();
-        Color bgColor = cs.getColor2();
+        Color bgColor = GameAssets.backgroundColor;
         Gdx.gl.glClearColor(bgColor.r, bgColor.g, bgColor.b, bgColor.a);
         stage = new Stage();
         batch = new SpriteBatch();
-        texture = new Texture("title_gunma.png");
+        texture = new Texture(GameAssets.titleGunmaPath);
 
         Gdx.input.setInputProcessor(stage);
         assetManager = new AssetManager();

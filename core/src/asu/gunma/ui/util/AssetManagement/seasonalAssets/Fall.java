@@ -8,9 +8,9 @@ public class Fall extends Season {
     public String _mountainImage = mountainImagePath = "background/mountainx3_f.png";
 
 
-    public Color _color1 = color1 = new Color(0xd94c2c01);
-    public Color _color2 = color2 = new Color(0xed861f01);
-    public Color _color3 = color3 = new Color(0xf4d36001);
-    public Color _color4 = color4 = new Color(0xa8ce6801);
-    public Color _color5 = color5 = new Color(0x1b431401);
+    public Color _color1 = color1 = new Color(0xd94c2cff);
+    public Color _color2 = color2 = new Color(0xed861fff);
+    public Color _color3 = color3 = new Color(0xf4d360ff);
+    public Color _color4 = color4 = new Color(0xa8ce68ff);
+    public Color _color5 = color5 = new Color(0x1b4314ff);
 }

@@ -2,7 +2,6 @@ package asu.gunma.ui.screen.menu;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
@@ -19,17 +18,12 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import asu.gunma.DatabaseInterface.DbInterface;
 import asu.gunma.speech.ActionResolver;
 import asu.gunma.ui.util.AssetManagement.GameAssets;
-import asu.gunma.ui.util.ColorScheme;
 
 public class SettingsScreen implements Screen {
 
@@ -79,12 +73,11 @@ public class SettingsScreen implements Screen {
 
     @Override
     public void show() {
-        ColorScheme cs = new ColorScheme();
-        Color bgColor = cs.getColor2();
+        Color bgColor = GameAssets.backgroundColor;
         Gdx.gl.glClearColor(bgColor.r, bgColor.g, bgColor.b, bgColor.a);
         stage = new Stage();
         batch = new SpriteBatch();
-        texture = new Texture("title_gunma.png");
+        texture = new Texture(GameAssets.titleGunmaPath);
 
         Gdx.input.setInputProcessor(stage);
         assetManager = new AssetManager();
