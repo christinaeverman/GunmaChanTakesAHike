@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import asu.gunma.DatabaseInterface.DbInterface;
 import asu.gunma.DbContainers.VocabWord;
 import asu.gunma.MiniGames.Controllers.WordScrambleGameController;
-import asu.gunma.MiniGames.Models.WordScrambleGame;
+import asu.gunma.MiniGames.Models.WordScrambleGameModel;
 import asu.gunma.MiniGames.Views.WordScrambleGameView;
 import asu.gunma.speech.ActionResolver;
 import asu.gunma.ui.screen.game.FlashcardScreen;
@@ -183,18 +183,16 @@ public class MainMenuScreen implements Screen {
                 gameMusic.dispose();
                 //play GameFirst music
                 // gameMusic = new Music
-                WordScrambleGame wordScrambleModel = new WordScrambleGame(game, speechGDX, gameMusic, dbCallback, game.getScreen(), activeVList, prefs);
-                WordScrambleGameView wordScrambleView = new WordScrambleGameView();
-                game.setScreen(wordScrambleModel);
-                WordScrambleGameController wordScrambleController = new WordScrambleGameController(wordScrambleModel, wordScrambleView);
+                WordScrambleGameModel wordScrambleModel = new WordScrambleGameModel(0, activeVList);
+                WordScrambleGameController wordScrambleController = new WordScrambleGameController(wordScrambleModel);
+                WordScrambleGameView wordScrambleView = new WordScrambleGameView(game, speechGDX, gameMusic, game.getScreen(), prefs, wordScrambleController);
+                game.setScreen(wordScrambleView);
 
                 System.out.println("PRINTING ACTIVE VOCAB LIST!");
                 for (VocabWord itr : wordScrambleModel.getActiveVocabList())
                     System.out.println(itr.getEngSpelling());
                 //for (String itr : wordScrambleController.WordScrambleModel.getscrambledList())
                 //    System.out.println(itr.getEngSpelling());
-
-                wordScrambleController.scramble();
             }
         });
         buttonOptionMenu.addListener(new ClickListener() {

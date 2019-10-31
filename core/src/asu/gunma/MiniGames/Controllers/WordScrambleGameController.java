@@ -1,91 +1,68 @@
 package asu.gunma.MiniGames.Controllers;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import asu.gunma.DbContainers.VocabWord;
-import asu.gunma.MiniGames.Models.WordScrambleGame;
+import asu.gunma.MiniGames.Models.WordScrambleGameModel;
 import asu.gunma.MiniGames.Views.WordScrambleGameView;
 
 public class WordScrambleGameController
 {
-    private WordScrambleGame model;
+    private WordScrambleGameModel model;
     private WordScrambleGameView view;
 
-    public WordScrambleGameController(WordScrambleGame model, WordScrambleGameView view)
+    public WordScrambleGameController(WordScrambleGameModel model)
     {
         this.model = model;
-        this.view = view;
     }
 
-    public void increaseScore()
+    public int getScore()
     {
-        model.setScore(model.getScore()+ 1);
+        return model.getScore();
     }
 
-    // scramble each word in the vocab list
-    public void scramble()
+    public ArrayList<VocabWord> getActiveVocabList()
     {
-        // We only need the string containing the English spelling of each vocab word, not the VocabWord object
-        ArrayList<VocabWord> scrambledVocabWordList = new ArrayList<VocabWord>(model.getActiveVocabList());
-        ArrayList<String> scrambledList = new ArrayList<String>();
+        return model.getActiveVocabList();
+    }
 
-        // add English spelling of all words to ArrayList
-        for (VocabWord itr : scrambledVocabWordList)
-        {
-            scrambledList.add(itr.getEngSpelling());
-        }
+    public ArrayList<String> getScrambledList()
+    {
+        return model.getScrambledList();
+    }
 
-        // iterate through vocab list
-        for (int i = 0; i < scrambledList.size(); i++)
-        {
-            ArrayList<Character> charList = new ArrayList<Character>();
+    public VocabWord getCurrentVocabWord(int index)
+    {
+        VocabWord currentWord = model.getActiveVocabList().get(index);
+        return currentWord;
+    }
 
-            // add all letters of a single word to the ArrayList
-            for (char letter : scrambledList.get(i).toCharArray())
-            {
-                // check for space
-                if (letter != ' ')
-                {
-                    // add letter to ArrayList of chars
-                    charList.add(letter);
-                }
-            }
+    public String getCurrentScrambledWord(int index)
+    {
+        String currentScrambledWord = model.getScrambledList().get(index);
+        return currentScrambledWord;
+    }
 
-            StringBuilder scrambledWord = new StringBuilder();
-            int index = 0;
+    // set methods
+    public void setScore(int score)
+    {
+        model.setScore(score);
+    }
 
-            // add letters at random to the string to create a scrambled word
-            while (charList.size() != 0)
-            {
-                int random = (int)(Math.random() * charList.size());
+    public void setActiveVocabList(ArrayList<VocabWord> activeVocabList)
+    {
+        model.setActiveVocabList(activeVocabList);
+    }
 
-                // keep the space where it is if the vocab consists of more than 1 word
-                if (scrambledList.get(i).charAt(index) == ' ')
-                {
-                    scrambledWord.append(' ');
-                }
-                else
-                {
-                    scrambledWord.append(charList.remove(random));
-                }
-
-                index++;
-            }
-
-            String scrambledWordString = scrambledWord.toString();
-            scrambledList.set(i, scrambledWordString);
-        }
-
-        // set the model's scrambledList to the list of scrambled words
+    public void setScrambledList(ArrayList<String> scrambledList)
+    {
         model.setScrambledList(scrambledList);
+    }
 
-        // prints the full list of scrambled words for debugging purposes
-
-        for (String itr : model.getScrambledList())
-        {
-            System.out.println(itr);
-        }
-
+    // other methods
+    public int increaseScore()
+    {
+        int increasedScore = model.increaseScore();
+        return increasedScore;
     }
 }
