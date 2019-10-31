@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!DOCTYPE properties SYSTEM
+    "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="EnterStudentId">生徒番号を記入してください。</entry>
+    <entry key="VideoTutorials">発音練習のビデオ</entry>
+    <entry key="Flashcards">フラッシュカード</entry>
+    <entry key="LoadNewClass">名簿を読み込む</entry>
+    <entry key="DownloadClassData">クラスデータを書き出す</entry>
+    <entry key="Start">スタート</entry>
+    <entry key="Settings">設定</entry>
+    <entry key="QuitGame">ゲームをやめますか。</entry>
+    <entry key="Yes">はい</entry>
+    <entry key="No">いいえ</entry>
+    <entry key="VocabularySets">単語セット</entry>
+    <entry key="SelectVocabularySets">単語セットを選択してください。</entry>
+    <entry key="Numbers">数字</entry>
+    <entry key="ColorsShapes">色・形</entry>
+    <entry key="Countries">国</entry>
+    <entry key="DaysMonths">曜日・月</entry>
+    <entry key="Feelings">気持ち</entry>
+    <entry key="Subjects">教科</entry>
+    <entry key="FruitsFoods">フルーツ・食べ物</entry>
+    <entry key="Professions">仕事</entry>
+    <entry key="Places">建物</entry>
+    <entry key="Time">時間</entry>
+    <entry key="AddVocabularySet">単語セットを追加する。</entry>
+    <entry key="VocabularySetName">単語セット名を記入してください。</entry>
+    <entry key="Cancel">キャンセル</entry>
+    <entry key="Done">終了</entry>
+</properties>
