@@ -25,7 +25,6 @@ import asu.gunma.ui.util.GradeSystem;
 // You'll want to use the WordScrambleGameController class
 public class AsteroidGameView implements Screen
 {
-    //DbInterface dbCallback;
     private WordScrambleGameController controller;
     private GradeSystem gradeSystem;
     private String displayWord;
@@ -40,8 +39,6 @@ public class AsteroidGameView implements Screen
 
     // UI variables
     private Stage stage;
-
-    private TextButton buttonTutorial;
 
     private SpriteBatch batch;
     private Texture texture;
