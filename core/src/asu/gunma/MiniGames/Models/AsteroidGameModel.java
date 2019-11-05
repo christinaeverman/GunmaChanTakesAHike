@@ -1,6 +1,5 @@
 package asu.gunma.MiniGames.Models;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import asu.gunma.DbContainers.VocabWord;
