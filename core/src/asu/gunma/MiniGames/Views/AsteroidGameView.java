@@ -15,25 +15,19 @@ import asu.gunma.speech.ActionResolver;
 // You'll want to use the AsteroidGameController class
 public class AsteroidGameView implements Screen
 {
-    DbInterface dbCallback;
     private Game game;
     private Music gameMusic;
     public static float masterVolume = 5;
     public ActionResolver speechGDX;
     private Screen previousScreen;
-    private ArrayList<VocabWord> activeVocabList; // list of words that may be included in the mini-game
 
-    // Game logic variables
-    private int score = 0;
-
-    public AsteroidGameView(Game game, ActionResolver speechGDX, Music music, DbInterface dbCallback, Screen previous, ArrayList<VocabWord> activeList, Preferences prefs)
+    public AsteroidGameView(Game game, ActionResolver speechGDX, Music music, Screen previous, Preferences prefs)
     {
         this.game = game;
         this.speechGDX = speechGDX;
         this.gameMusic = music;
-        this.dbCallback = dbCallback;
+
         this.previousScreen = previous;
-        this.activeVocabList = activeList;
     }
 
     // Override Screen class methods

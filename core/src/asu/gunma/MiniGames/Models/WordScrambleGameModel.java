@@ -18,7 +18,10 @@ public class WordScrambleGameModel
         else
             score = 0;
 
-        this.activeVocabList = activeVocabList;
+        if (activeVocabList != null)
+            this.activeVocabList = activeVocabList;
+        else
+            this.activeVocabList = new ArrayList<VocabWord>();
 
         // sets the list of words with scrambled letters for each individual word
         this.scramble();

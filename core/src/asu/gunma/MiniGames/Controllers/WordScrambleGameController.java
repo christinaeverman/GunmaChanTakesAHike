@@ -11,7 +11,10 @@ public class WordScrambleGameController
 
     public WordScrambleGameController(WordScrambleGameModel model)
     {
-        this.model = model;
+        if (model != null)
+            this.model = model;
+        else
+            model = new WordScrambleGameModel(0, null);
     }
 
     // get methods

@@ -1,5 +1,6 @@
 package asu.gunma.MiniGames.Models;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import asu.gunma.DbContainers.VocabWord;
@@ -9,23 +10,27 @@ public class AsteroidGameModel
     private int level; // current level that the player is on (levels 1 - 5)
     private int score = 0;
     private ArrayList<VocabWord> activeVocabList; // list of words that may be included in the mini-game
+    private ArrayList<Asteroid> asteroidList;
 
-    public AsteroidGameModel(int level, int score, ArrayList<VocabWord> activeVocabList)
+    public AsteroidGameModel(int level, int score, ArrayList<VocabWord> activeVocabList, ArrayList<Asteroid> asteroidList)
     {
-        if (level >= 1 && level <= 5)
-            this.level = level;
-        else
-            level = 1;
+        setLevel(level);
 
         if (score >= 0)
             this.score = score;
         else
-            score = 0;
+            this.score = 0;
 
         if (activeVocabList != null)
             this.activeVocabList = activeVocabList;
         else
-            activeVocabList = new ArrayList<VocabWord>();
+            this.activeVocabList = new ArrayList<VocabWord>();
+
+        // the number of asteroids sent towards the player is equal to the level number
+        if (asteroidList.size() == level)
+            this.asteroidList = asteroidList;
+        else
+            this.asteroidList = new ArrayList<Asteroid>();
     }
 
     // get methods
@@ -44,6 +49,11 @@ public class AsteroidGameModel
         return activeVocabList;
     }
 
+    public ArrayList<Asteroid> getAsteroidList()
+    {
+        return asteroidList;
+    }
+
     // set methods
     public void setScore(int score)
     {
@@ -52,11 +62,19 @@ public class AsteroidGameModel
 
     public void setLevel(int level)
     {
-        this.level = level;
+        if (level >= 1 && level <= 5)
+            this.level = level;
+        else
+            level = 1;
     }
 
     public void setActiveVocabList(ArrayList<VocabWord> activeVocabList)
     {
         this.activeVocabList = activeVocabList;
+    }
+
+    public void setAsteroidList(ArrayList<Asteroid> asteroidList)
+    {
+        this.asteroidList = asteroidList;
     }
 }
