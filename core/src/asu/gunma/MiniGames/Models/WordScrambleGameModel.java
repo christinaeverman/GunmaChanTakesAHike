@@ -8,8 +8,6 @@ import asu.gunma.DbContainers.VocabWord;
 public class WordScrambleGameModel
 {
     private int score = 0;
-    private String displayWord;
-    private List<VocabWord> dbListWords;
     private ArrayList<VocabWord> activeVocabList; // list of words that may be included in the mini-game
     private ArrayList<String> scrambledList; // list of individual words in their scrambled form
 
@@ -21,6 +19,8 @@ public class WordScrambleGameModel
             score = 0;
 
         this.activeVocabList = activeVocabList;
+
+        // sets the list of words with scrambled letters for each individual word
         this.scramble();
     }
 

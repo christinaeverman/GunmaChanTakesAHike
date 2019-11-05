@@ -4,18 +4,17 @@ import java.util.ArrayList;
 
 import asu.gunma.DbContainers.VocabWord;
 import asu.gunma.MiniGames.Models.WordScrambleGameModel;
-import asu.gunma.MiniGames.Views.WordScrambleGameView;
 
 public class WordScrambleGameController
 {
     private WordScrambleGameModel model;
-    private WordScrambleGameView view;
 
     public WordScrambleGameController(WordScrambleGameModel model)
     {
         this.model = model;
     }
 
+    // get methods
     public int getScore()
     {
         return model.getScore();
