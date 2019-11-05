@@ -21,6 +21,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.audio.Music;
 
 import java.util.ArrayList;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import asu.gunma.DatabaseInterface.DbInterface;
 import asu.gunma.DbContainers.VocabWord;
@@ -116,7 +118,20 @@ public class MainMenuScreen implements Screen {
         textButtonStyle.font = font;
 
         // IMPORTANT: needs localization support
-        buttonTutorial = new TextButton("Video Tutorials", textButtonStyle);
+        Locale locale = new Locale("default");
+//        FileInputStream fis = new FileInputStream("MessagesBundle");
+//        File file = new File("MessagesBundle.properties");
+//        ClassLoader loader = null;
+//        try {
+//            URL[] urls = {file.toURI().toURL()};
+//            loader = new URLClassLoader(urls);
+//        } catch (MalformedURLException e) {
+//            System.out.println("error: " + e.getMessage());
+//            e.printStackTrace();
+//        }
+//        ResourceBundle bundle = ResourceBundle.getBundle("MessagesBundle", Locale.getDefault(), loader);
+        ResourceBundle bundle = MyResources.getBundle("asu.gunma.ui.screen.menu.MyResources");
+        buttonTutorial = new TextButton(bundle.getString("VideoTutorials"), textButtonStyle);
         buttonFlashcard = new TextButton("Flashcards", textButtonStyle);
         buttonGameFirst = new TextButton("Game #1", textButtonStyle);
         buttonOptionMenu = new TextButton("Options Menu", textButtonStyle);
