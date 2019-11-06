@@ -2,20 +2,29 @@ package asu.gunma.MiniGames.Models;
 
 import com.badlogic.gdx.math.Vector2;
 
+import asu.gunma.DbContainers.VocabWord;
+
 public class Asteroid
 {
+    private VocabWord word;
     private float velocity;
     private float direction;
     private Vector2 position;
 
-    public Asteroid(float velocity, float direction, Vector2 position)
+    public Asteroid(VocabWord word, float velocity, float direction, Vector2 position)
     {
-        this.velocity = velocity;
-        this.direction = direction;
-        this.position = position;
+        setWord(word);
+        setVelocity(velocity);
+        setDirection(direction);
+        setPosition(position);
     }
 
     // get methods
+    public VocabWord getWord()
+    {
+        return word;
+    }
+
     public float getVelocity()
     {
         return velocity;
@@ -32,6 +41,14 @@ public class Asteroid
     }
 
     // set methods
+    public void setWord(VocabWord word)
+    {
+        if (word != null)
+            this.word = word;
+        else
+            this.word = new VocabWord();
+    }
+
     public void setVelocity(float velocity)
     {
         this.velocity = velocity;

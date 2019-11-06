@@ -1,5 +1,7 @@
 package asu.gunma.MiniGames.Models;
 
+import com.badlogic.gdx.math.Vector2;
+
 import java.util.ArrayList;
 
 import asu.gunma.DbContainers.VocabWord;
@@ -14,22 +16,9 @@ public class AsteroidGameModel
     public AsteroidGameModel(int level, int score, ArrayList<VocabWord> activeVocabList, ArrayList<Asteroid> asteroidList)
     {
         setLevel(level);
-
-        if (score >= 0)
-            this.score = score;
-        else
-            this.score = 0;
-
-        if (activeVocabList != null)
-            this.activeVocabList = activeVocabList;
-        else
-            this.activeVocabList = new ArrayList<VocabWord>();
-
-        // the number of asteroids sent towards the player is equal to the level number
-        if (asteroidList.size() == level)
-            this.asteroidList = asteroidList;
-        else
-            this.asteroidList = new ArrayList<Asteroid>();
+        setScore(score);
+        setActiveVocabList(activeVocabList);
+        setAsteroidList(asteroidList);
     }
 
     // get methods
@@ -56,7 +45,10 @@ public class AsteroidGameModel
     // set methods
     public void setScore(int score)
     {
-        this.score = score;
+        if (score >= 0)
+            this.score = score;
+        else
+            this.score = 0;
     }
 
     public void setLevel(int level)
@@ -64,16 +56,51 @@ public class AsteroidGameModel
         if (level >= 1 && level <= 5)
             this.level = level;
         else
-            level = 1;
+            this.level = 1;
     }
 
     public void setActiveVocabList(ArrayList<VocabWord> activeVocabList)
     {
-        this.activeVocabList = activeVocabList;
+        if (activeVocabList != null)
+            this.activeVocabList = activeVocabList;
+        else
+            this.activeVocabList = new ArrayList<VocabWord>();
     }
 
     public void setAsteroidList(ArrayList<Asteroid> asteroidList)
     {
-        this.asteroidList = asteroidList;
+        if (asteroidList == null)
+        {
+            asteroidList = new ArrayList<Asteroid>();
+
+            for (int i = 0; i < level; i++)
+            {
+                Asteroid asteroid = new Asteroid(null, 1, 0, new Vector2(0, 0));
+                asteroidList.add(asteroid);
+            }
+
+            return;
+        }
+
+        int size = asteroidList.size();
+
+        // the number of asteroids sent towards the player must be equal to the level number
+        if (size > level)
+        {
+            for (int i = size - 1; i >= level; i--)
+            {
+                asteroidList.remove(i);
+            }
+        }
+        else if (asteroidList.size() < level)
+        {
+            for (int i = size - 1; i < level; i++)
+            {
+                Asteroid asteroid = new Asteroid(null, 1, 0, new Vector2(0, 0));
+                asteroidList.add(asteroid);
+            }
+        }
+        else
+            this.asteroidList = asteroidList;
     }
 }
