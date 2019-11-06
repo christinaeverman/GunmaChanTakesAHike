@@ -14,7 +14,7 @@ public class WordScrambleGameController
         if (model != null)
             this.model = model;
         else
-            model = new WordScrambleGameModel(0, null);
+            this.model = new WordScrambleGameModel(0, null);
     }
 
     // get methods
@@ -35,14 +35,12 @@ public class WordScrambleGameController
 
     public VocabWord getCurrentVocabWord(int index)
     {
-        VocabWord currentWord = model.getActiveVocabList().get(index);
-        return currentWord;
+        return model.getActiveVocabList().get(index);
     }
 
     public String getCurrentScrambledWord(int index)
     {
-        String currentScrambledWord = model.getScrambledList().get(index);
-        return currentScrambledWord;
+        return model.getScrambledList().get(index);
     }
 
     // set methods
@@ -64,7 +62,6 @@ public class WordScrambleGameController
     // other methods
     public int increaseScore()
     {
-        int increasedScore = model.increaseScore();
-        return increasedScore;
+        return model.increaseScore();
     }
 }

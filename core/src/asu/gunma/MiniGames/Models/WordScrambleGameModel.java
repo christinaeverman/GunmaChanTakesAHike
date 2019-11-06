@@ -7,21 +7,14 @@ import asu.gunma.DbContainers.VocabWord;
 
 public class WordScrambleGameModel
 {
-    private int score = 0;
+    private int score;
     private ArrayList<VocabWord> activeVocabList; // list of words that may be included in the mini-game
     private ArrayList<String> scrambledList; // list of individual words in their scrambled form
 
     public WordScrambleGameModel (int score, ArrayList<VocabWord> activeVocabList)
     {
-        if (score != 0)
-            this.score = score;
-        else
-            score = 0;
-
-        if (activeVocabList != null)
-            this.activeVocabList = activeVocabList;
-        else
-            this.activeVocabList = new ArrayList<VocabWord>();
+        setScore(score);
+        setActiveVocabList(activeVocabList);
 
         // sets the list of words with scrambled letters for each individual word
         this.scramble();
@@ -45,36 +38,43 @@ public class WordScrambleGameModel
 
     public VocabWord getCurrentVocabWord(int index)
     {
-        VocabWord currentWord = activeVocabList.get(index);
-        return currentWord;
+        return activeVocabList.get(index);
     }
 
     public String getCurrentScrambledWord(int index)
     {
-        String currentScrambledWord = scrambledList.get(index);
-        return currentScrambledWord;
+        return scrambledList.get(index);
     }
 
     // set methods
     public void setScore(int score)
     {
-        this.score = score;
+        if (score >= 0)
+            this.score = score;
+        else
+            this.score = 0;
     }
 
     public void setActiveVocabList(ArrayList<VocabWord> activeVocabList)
     {
-        this.activeVocabList = new ArrayList<VocabWord>(activeVocabList);
+        if (activeVocabList != null)
+            this.activeVocabList = activeVocabList;
+        else
+            this.activeVocabList = new ArrayList<VocabWord>();
     }
 
     public void setScrambledList(ArrayList<String> scrambledList)
     {
-        this.scrambledList = new ArrayList<String>(scrambledList);
+        if (scrambledList != null)
+            this.scrambledList = new ArrayList<String>(scrambledList);
+        else
+            scramble();
     }
 
     // other methods
     public int increaseScore()
     {
-        score += score;
+        score += 1;
         return score;
     }
 
@@ -140,6 +140,5 @@ public class WordScrambleGameModel
         {
             System.out.println(itr);
         }
-
     }
 }
