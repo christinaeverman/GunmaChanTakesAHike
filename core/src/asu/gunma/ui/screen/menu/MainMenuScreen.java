@@ -58,7 +58,7 @@ public class MainMenuScreen implements Screen {
         This is based on the Project Proposal, I'd like to change this
         before the final release.
      */
-    private TextButton buttonTutorial, buttonFlashcard, buttonGameFirst, buttonMiniGameFirst, buttonOptionMenu;
+    private TextButton buttonTutorial, buttonFlashcard, buttonGameFirst, buttonMiniGameFirst, buttonMiniGameSecond, buttonOptionMenu;
 
     private SpriteBatch batch;
     private Texture texture;
@@ -123,6 +123,7 @@ public class MainMenuScreen implements Screen {
         buttonFlashcard = new TextButton("Flashcards", textButtonStyle);
         buttonGameFirst = new TextButton("Game #1", textButtonStyle);
         buttonMiniGameFirst = new TextButton("Minigame #1", textButtonStyle);
+        buttonMiniGameSecond = new TextButton("Minigame #2", textButtonStyle);
         buttonOptionMenu = new TextButton("Options Menu", textButtonStyle);
 
 
@@ -139,6 +140,7 @@ public class MainMenuScreen implements Screen {
         buttonFlashcard.pad(20);
         buttonGameFirst.pad(20);
         buttonMiniGameFirst.pad(20);
+        buttonMiniGameSecond.pad(20);
         buttonOptionMenu.pad(20);
 
 
@@ -175,8 +177,28 @@ public class MainMenuScreen implements Screen {
 
             }
         });
-        // we can change where this button is located on the main menu or elsewhere, but I put this in for debugging purposes
+        // we can change where the following two buttons are located on the main menu or elsewhere, but I put these in for debugging purposes
         buttonMiniGameFirst.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                gameMusic.pause();
+                gameMusic.dispose();
+                //play GameFirst music
+                // gameMusic = new Music
+                WordScrambleGameModel wordScrambleModel = new WordScrambleGameModel(0, activeVList);
+                WordScrambleGameController wordScrambleController = new WordScrambleGameController(wordScrambleModel);
+                WordScrambleGameView wordScrambleView = new WordScrambleGameView(game, speechGDX, gameMusic, game.getScreen(), prefs, wordScrambleController);
+                game.setScreen(wordScrambleView);
+
+                System.out.println("PRINTING ACTIVE VOCAB LIST!");
+                for (VocabWord itr : wordScrambleModel.getActiveVocabList())
+                    System.out.println(itr.getEngSpelling());
+                //for (String itr : wordScrambleController.WordScrambleModel.getscrambledList())
+                //    System.out.println(itr.getEngSpelling());
+            }
+        });
+        // we can change where the following two buttons are located on the main menu or elsewhere, but I put these in for debugging purposes
+        buttonMiniGameSecond.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 gameMusic.pause();
@@ -217,6 +239,8 @@ public class MainMenuScreen implements Screen {
         table.add(buttonGameFirst);
         table.row();
         table.add(buttonMiniGameFirst);
+        table.row();
+        table.add(buttonMiniGameSecond);
         table.row();
         table.add(buttonOptionMenu);
         table.row();

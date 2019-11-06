@@ -104,7 +104,6 @@ public class AsteroidGameView implements Screen
         textButtonStyle.font = font2;
         textButtonStyle.fontColor = Color.BLACK;
 
-        buttonTutorial = new TextButton("Play", textButtonStyle);
         speakButton = new TextButton("Speak", textButtonStyle);
         speakButton.setPosition(100 , Gdx.graphics.getHeight() - 550);
 
