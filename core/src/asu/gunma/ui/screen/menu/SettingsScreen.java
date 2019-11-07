@@ -28,6 +28,7 @@ import java.util.List;
 
 import asu.gunma.DatabaseInterface.DbInterface;
 import asu.gunma.speech.ActionResolver;
+import asu.gunma.ui.util.AssetManagement.GameAssets;
 
 public class SettingsScreen implements Screen {
 
@@ -46,7 +47,7 @@ public class SettingsScreen implements Screen {
     private Skin testSkin;
     private Table table, table2, table3, table4, table5, table6;
 
-    private TextButton homeScreenLockButton, googleLoginButton,backButton, googleLogoutButton;
+    private TextButton homeScreenLockButton, googleLoginButton,backButton, googleLogoutButton, setLanguageButton;
 
     private SpriteBatch batch;
     private Texture texture;
@@ -59,16 +60,19 @@ public class SettingsScreen implements Screen {
     private FreeTypeFontGenerator generator;
     private String googleLoginMessage = "";
     private String googleLogoutMessage = "";
+    private String setLanguageMessage = "";
     private boolean signedIn = false;
     public Preferences prefs;
+    private GameAssets gameAssets;
 
-    public SettingsScreen(Game game, ActionResolver speechGDX, Music music, DbInterface dbInterface, Screen previousScreen, Preferences prefs){
+    public SettingsScreen(Game game, ActionResolver speechGDX, Music music, DbInterface dbInterface, Screen previousScreen, Preferences prefs, GameAssets gameAssets){
         this.game = game;
         this.prefs = prefs;
         this.speechGDX = speechGDX;
         this.dbInterface = dbInterface;
         this.previousScreen = previousScreen;
         this.gameMusic = music;
+        this.gameAssets = gameAssets;
         gameMusic = Gdx.audio.newMusic(Gdx.files.internal("IntroMusic.mp3"));
         gameMusic.setLooping(false);
         gameMusic.setVolume(masterVolume);
@@ -116,6 +120,18 @@ public class SettingsScreen implements Screen {
         googleLogoutButton.setPosition(50, 200);
         googleLogoutButton.getLabel().setAlignment(Align.center);
 
+        if(gameAssets.localeString == "en") {
+            setLanguageMessage = "Change Language to Japanese";
+        } else {
+            setLanguageMessage = "Change Language to English";
+        }
+
+        setLanguageButton = new TextButton(setLanguageMessage, testSkin, "default");
+        setLanguageButton.setTransform(true);
+        setLanguageButton.setScale(0.5f);
+        setLanguageButton.setPosition(50, 200);
+        setLanguageButton.getLabel().setAlignment(Align.center);
+
         //font file
         final String FONT_PATH = "irohamaru-mikami-Regular.ttf";
         generator = new FreeTypeFontGenerator(Gdx.files.internal(FONT_PATH));
@@ -154,12 +170,26 @@ public class SettingsScreen implements Screen {
             }
         });
 
+        setLanguageButton.addListener(new ClickListener(){
+            public void clicked(InputEvent event, float x, float y){
+                if(gameAssets.localeString == "en") {
+                    gameAssets.setLocale("jp");
+                } else {
+                    gameAssets.setLocale("en");
+                }
+                googleLoginMessage = "";
+                gameMusic.pause();
+                gameMusic.dispose();
+                game.setScreen(new SettingsScreen(game, speechGDX, gameMusic, dbInterface, game.getScreen(), prefs, gameAssets));
+            }
+        });
+
         backButton.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
                 googleLoginMessage = "";
                 gameMusic.pause();
                 gameMusic.dispose();
-                game.setScreen(new OptionMenu(game, speechGDX, gameMusic, dbInterface, previousScreen, prefs));
+                game.setScreen(new OptionMenu(game, speechGDX, gameMusic, dbInterface, previousScreen, prefs, gameAssets));
                 dispose(); // dispose of current GameScreen
             }
         });
@@ -168,6 +198,7 @@ public class SettingsScreen implements Screen {
         stage.addActor(backButton);
         stage.addActor(googleLoginButton);
         stage.addActor(googleLogoutButton);
+        stage.addActor(setLanguageButton);
     }
 
     @Override

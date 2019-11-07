@@ -1,4 +1,4 @@
-package asu.gunma.ui.screen.menu;
+package asu.gunma.ui.util.AssetManagement;
 
 public class MyResources_jp extends MyResources{
     protected Object[][] getContents() {

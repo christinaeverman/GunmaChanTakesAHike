@@ -36,6 +36,7 @@ import java.util.List;
 
 import asu.gunma.DatabaseInterface.DbInterface;
 import asu.gunma.speech.ActionResolver;
+import asu.gunma.ui.util.AssetManagement.GameAssets;
 
 public class OptionMenu implements Screen {
 
@@ -46,6 +47,7 @@ public class OptionMenu implements Screen {
     private DbInterface dbInterface;
     private AssetManager assetManager;
     private Screen previousScreen;
+    private GameAssets gameAssets;
 
     // Using these are unnecessary but will make our lives easier.
     private Stage stage;
@@ -88,7 +90,7 @@ public class OptionMenu implements Screen {
     public Preferences prefs;
     File currentFile = null;
 
-    public OptionMenu(Game game, ActionResolver speechGDX, Music music, DbInterface dbInterface, Screen previousScreen, ArrayList<VocabWord> arrayList, Preferences prefs) {
+    public OptionMenu(Game game, ActionResolver speechGDX, Music music, DbInterface dbInterface, Screen previousScreen, ArrayList<VocabWord> arrayList, Preferences prefs, GameAssets gameAssets) {
         this.game = game;
         this.prefs = prefs;
         this.speechGDX = speechGDX;
@@ -96,19 +98,21 @@ public class OptionMenu implements Screen {
         this.dbInterface = dbInterface;
         this.previousScreen = previousScreen;
         this.activeVocabList = arrayList;
+        this.gameAssets = gameAssets;
         gameMusic = Gdx.audio.newMusic(Gdx.files.internal("IntroMusic.mp3"));
         gameMusic.setLooping(false);
         gameMusic.setVolume(masterVolume);
         gameMusic.play();
     }
 
-    public OptionMenu(Game game, ActionResolver speechGDX, Music music, DbInterface dbInterface, Screen previousScreen, Preferences prefs) {
+    public OptionMenu(Game game, ActionResolver speechGDX, Music music, DbInterface dbInterface, Screen previousScreen, Preferences prefs, GameAssets gameAssets) {
         this.game = game;
         this.prefs = prefs;
         this.speechGDX = speechGDX;
         this.gameMusic = music;
         this.dbInterface = dbInterface;
         this.previousScreen = previousScreen;
+        this.gameAssets = gameAssets;
         gameMusic = Gdx.audio.newMusic(Gdx.files.internal("IntroMusic.mp3"));
         gameMusic.setLooping(false);
         gameMusic.setVolume(masterVolume);
@@ -1247,7 +1251,7 @@ public class OptionMenu implements Screen {
                 /*if (verified){
                     game.setScreen(new SettingsScreen(game, speechGDX, gameMusic, dbInterface, game.getScreen()));
                 }*/
-              game.setScreen(new SettingsScreen(game, speechGDX, gameMusic, dbInterface, game.getScreen(), prefs));
+              game.setScreen(new SettingsScreen(game, speechGDX, gameMusic, dbInterface, game.getScreen(), prefs, gameAssets));
             }
         });
         backButton.addListener(new ClickListener() {
@@ -1258,7 +1262,7 @@ public class OptionMenu implements Screen {
                 gameMusic.setLooping(false);
                 gameMusic.setVolume(masterVolume);
                 gameMusic.play();
-                game.setScreen(new MainMenuScreen(game, speechGDX, gameMusic, dbInterface, activeVocabList, prefs));
+                game.setScreen(new MainMenuScreen(game, speechGDX, gameMusic, dbInterface, activeVocabList, prefs, gameAssets));
                 previousScreen.dispose();
                 dispose(); // dispose of current GameScreen
             }

@@ -1,4 +1,4 @@
-package asu.gunma.ui.screen.menu;
+package asu.gunma.ui.util.AssetManagement;
 
 import java.util.ListResourceBundle;
 

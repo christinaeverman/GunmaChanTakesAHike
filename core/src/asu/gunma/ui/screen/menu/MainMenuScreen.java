@@ -29,6 +29,8 @@ import asu.gunma.DbContainers.VocabWord;
 import asu.gunma.speech.ActionResolver;
 import asu.gunma.ui.screen.game.FlashcardScreen;
 import asu.gunma.ui.screen.game.GameScreen;
+import asu.gunma.ui.util.AssetManagement.GameAssets;
+import asu.gunma.ui.util.AssetManagement.MyResources;
 
 public class MainMenuScreen implements Screen {
 
@@ -38,6 +40,7 @@ public class MainMenuScreen implements Screen {
     public Music gameMusic;
     public static float masterVolume = 5;
     public ArrayList<VocabWord> activeVList = new ArrayList<>();
+    private GameAssets gameAssets;
 
     // Using these are unnecessary but will make our lives easier.
     private Stage stage;
@@ -70,19 +73,20 @@ public class MainMenuScreen implements Screen {
     FreeTypeFontGenerator.FreeTypeFontParameter parameter2;
     Preferences prefs;
 
-    public MainMenuScreen(Game game, ActionResolver speechGDX, Music music, DbInterface dbCallback, ArrayList<VocabWord> activeList, Preferences prefs) {
+    public MainMenuScreen(Game game, ActionResolver speechGDX, Music music, DbInterface dbCallback, ArrayList<VocabWord> activeList, Preferences prefs, GameAssets gameAssets) {
         this.game = game;
         this.prefs = prefs;
         this.speechGDX = speechGDX;
         this.gameMusic = music;
         this.dbCallback = dbCallback;
         this.activeVList = activeList;
+        this.gameAssets = gameAssets;
     }
 
     @Override
     public void show() {
         //font file
-        final String FONT_PATH = "irohamaru-mikami-Regular.ttf";
+        final String FONT_PATH = "rounded-mgenplus-1c-medium.ttf";
         generator = new FreeTypeFontGenerator(Gdx.files.internal(FONT_PATH));
 
         //font for vocab word
@@ -118,21 +122,8 @@ public class MainMenuScreen implements Screen {
         textButtonStyle.font = font;
 
         // IMPORTANT: needs localization support
-        Locale locale = new Locale("default");
-//        FileInputStream fis = new FileInputStream("MessagesBundle");
-//        File file = new File("MessagesBundle.properties");
-//        ClassLoader loader = null;
-//        try {
-//            URL[] urls = {file.toURI().toURL()};
-//            loader = new URLClassLoader(urls);
-//        } catch (MalformedURLException e) {
-//            System.out.println("error: " + e.getMessage());
-//            e.printStackTrace();
-//        }
-//        ResourceBundle bundle = ResourceBundle.getBundle("MessagesBundle", Locale.getDefault(), loader);
-        ResourceBundle bundle = MyResources.getBundle("asu.gunma.ui.screen.menu.MyResources");
-        buttonTutorial = new TextButton(bundle.getString("VideoTutorials"), textButtonStyle);
-        buttonFlashcard = new TextButton("Flashcards", textButtonStyle);
+        buttonTutorial = new TextButton(gameAssets.getResourceBundle().getString("VideoTutorials"), textButtonStyle);
+        buttonFlashcard = new TextButton(gameAssets.getResourceBundle().getString("Flashcards"), textButtonStyle);
         buttonGameFirst = new TextButton("Game #1", textButtonStyle);
         buttonOptionMenu = new TextButton("Options Menu", textButtonStyle);
 
@@ -171,7 +162,7 @@ public class MainMenuScreen implements Screen {
                 gameMusic.dispose();
                 //play flashcard music
                 //gameMusic = new Music
-                game.setScreen(new FlashcardScreen(game, speechGDX, gameMusic, dbCallback, game.getScreen(), activeVList, prefs));
+                game.setScreen(new FlashcardScreen(game, speechGDX, gameMusic, dbCallback, game.getScreen(), activeVList, prefs, gameAssets));
             }
         });
         buttonGameFirst.addListener(new ClickListener() {
@@ -181,7 +172,7 @@ public class MainMenuScreen implements Screen {
                 gameMusic.dispose();
                 //play GameFirst music
                 // gameMusic = new Music
-                game.setScreen(new GameScreen(game, speechGDX, gameMusic, dbCallback, game.getScreen(), activeVList, prefs));
+                game.setScreen(new GameScreen(game, speechGDX, gameMusic, dbCallback, game.getScreen(), activeVList, prefs,gameAssets));
 
             }
         });
@@ -193,7 +184,7 @@ public class MainMenuScreen implements Screen {
                 gameMusic.dispose();
                 //play OptionMenu music
                 //gameMusic = new Music
-                game.setScreen(new OptionMenu(game, speechGDX, gameMusic, dbCallback, game.getScreen(),  activeVList, prefs));
+                game.setScreen(new OptionMenu(game, speechGDX, gameMusic, dbCallback, game.getScreen(),  activeVList, prefs, gameAssets));
             }
         });
 
