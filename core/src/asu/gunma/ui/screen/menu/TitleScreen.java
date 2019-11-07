@@ -82,6 +82,7 @@ public class TitleScreen implements Screen {
         this.gameAssets = gameAssets;
         //font file
         final String FONT_PATH = "irohamaru-mikami-Regular.ttf";
+
         generator = new FreeTypeFontGenerator(Gdx.files.internal(FONT_PATH));
 
         //font for vocab word
@@ -111,7 +112,9 @@ public class TitleScreen implements Screen {
 
         parameter.size = 30;
         parameter.color = Color.BLACK;
-        font = generator.generateFont(parameter);
+//        font = generator.generateFont(parameter);
+
+        font = gameAssets.getFont();
 
         TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
         //textButtonStyle.up = skin.getDrawable("button.up");
@@ -121,12 +124,12 @@ public class TitleScreen implements Screen {
         textButtonStyle.font = font;
 
         // IMPORTANT: needs localization support
-        buttonTutorial = new TextButton("Play", textButtonStyle);
+        buttonTutorial = new TextButton(gameAssets.getResourceBundle().getString("Start"), textButtonStyle);
 
         Label.LabelStyle headingStyle = new Label.LabelStyle(font, Color.BLACK);
         //
 
-        heading = new Label("Gunma-chan Takes a Hike", headingStyle);
+        heading = new Label(gameAssets.getResourceBundle().getString("GameName"), headingStyle);
         heading.setFontScale(2);
         //
 

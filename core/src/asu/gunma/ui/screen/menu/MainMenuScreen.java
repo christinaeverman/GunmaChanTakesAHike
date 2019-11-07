@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -87,17 +88,8 @@ public class MainMenuScreen implements Screen {
     public void show() {
         //font file
         final String FONT_PATH = "rounded-mgenplus-1c-medium.ttf";
-        generator = new FreeTypeFontGenerator(Gdx.files.internal(FONT_PATH));
 
-        //font for vocab word
-        parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-
-        //font for other words
-        parameter2 = new FreeTypeFontGenerator.FreeTypeFontParameter();
-
-        parameter.size = 30;
-        parameter.color = Color.BLACK;
-        font = generator.generateFont(parameter);
+        font = gameAssets.getFont();
 
         Gdx.gl.glClearColor(.8f, 1, 1, 1);
         stage = new Stage();
@@ -124,15 +116,15 @@ public class MainMenuScreen implements Screen {
         // IMPORTANT: needs localization support
         buttonTutorial = new TextButton(gameAssets.getResourceBundle().getString("VideoTutorials"), textButtonStyle);
         buttonFlashcard = new TextButton(gameAssets.getResourceBundle().getString("Flashcards"), textButtonStyle);
-        buttonGameFirst = new TextButton("Game #1", textButtonStyle);
-        buttonOptionMenu = new TextButton("Options Menu", textButtonStyle);
+        buttonGameFirst = new TextButton(gameAssets.getResourceBundle().getString("Game1"), textButtonStyle);
+        buttonOptionMenu = new TextButton(gameAssets.getResourceBundle().getString("OptionsMenu"), textButtonStyle);
 
 
         Label.LabelStyle headingStyle = new Label.LabelStyle(font, Color.BLACK);
         //
 
 
-        heading = new Label("Select Type:", headingStyle);
+        heading = new Label(gameAssets.getResourceBundle().getString("SelectType"), headingStyle);
         heading.setFontScale(2);
         //
 

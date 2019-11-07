@@ -29,6 +29,7 @@ public class MyResources_jp extends MyResources{
             {"VocabularySetName", "単語セット名を記入してください。"},
             {"Cancel", "キャンセル "},
             {"Done", "終了 "},
+            {"setLanguageMessage", "Change Language to English"},
         };
     }
 }

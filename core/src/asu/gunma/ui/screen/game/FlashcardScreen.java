@@ -147,7 +147,8 @@ public class FlashcardScreen implements Screen {
         font = generator.generateFont(parameter);
         parameter2.size = 30;
         parameter2.color = Color.BLACK;
-        font2 = generator.generateFont(parameter2);
+//        font2 = generator.generateFont(parameter2);
+        font2 = gameAssets.getFont();
 
         Label.LabelStyle headingStyle = new Label.LabelStyle(font2, Color.BLACK);
         backInstruction = new Label("Swipe Right On First Word to Go Back", headingStyle);
@@ -282,23 +283,23 @@ public class FlashcardScreen implements Screen {
             }
         }));*/
 
-        backButton = new TextButton("Back", textButtonStyle);
+        backButton = new TextButton(gameAssets.getResourceBundle().getString("Back"), textButtonStyle);
         backButton.setPosition(Gdx.graphics.getWidth() - 100, Gdx.graphics.getHeight() - 50);
 
-        buttonRecord = new TextButton("Listen", textButtonStyle);
+        buttonRecord = new TextButton(gameAssets.getResourceBundle().getString("Listen"), textButtonStyle);
         buttonRecord.setPosition(800, Gdx.graphics.getHeight() - 550);
 
-        speakButton = new TextButton("Speak", textButtonStyle);
+        speakButton = new TextButton(gameAssets.getResourceBundle().getString("Speak"), textButtonStyle);
         speakButton.setPosition(100 , Gdx.graphics.getHeight() - 550);
 
 
-        flipButton = new TextButton("Flip", textButtonStyle);
+        flipButton = new TextButton(gameAssets.getResourceBundle().getString("Flip"), textButtonStyle);
         flipButton.setPosition(475, Gdx.graphics.getHeight() - 50);
 
-        prevButton = new TextButton("Previous", textButtonStyle);
+        prevButton = new TextButton(gameAssets.getResourceBundle().getString("Previous"), textButtonStyle);
         prevButton.setPosition(50, 275);
 
-        nextButton = new TextButton("Next", textButtonStyle);
+        nextButton = new TextButton(gameAssets.getResourceBundle().getString("Next"), textButtonStyle);
         nextButton.setPosition(Gdx.graphics.getWidth() - 100, 275);
 
         speakButton.addListener(new ClickListener() {

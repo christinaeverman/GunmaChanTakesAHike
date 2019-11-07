@@ -32,6 +32,27 @@ public class MyResources extends ListResourceBundle {
             {"VocabularySetName", "Vocabulary Set Name"},
             {"Cancel", "Cancel"},
             {"Done", "Done"},
+
+            {"GameName", "Gunma-chan Takes a Hike"},
+            {"Game1", "Game #1"},
+            {"OptionsMenu", "Options Menu"},
+            {"SelectType", "Select Type:"},
+            {"Back", "Back"},
+            {"Delete", "Delete"},
+            {"SelectFile", "Select File To Upload"},
+            {"HomeKeyUnlocked", "Home key unlocked"},
+            {"GoogleLogin", "Google Login"},
+            {"GoogleLogout", "Google Logout"},
+            {"Listen", "Listen"},
+            {"Speak", "Speak"},
+            {"Previous", "Previous"},
+            {"Next", "Next"},
+            {"Flip", "Flip"},
+            {"Pause", "Pause"},
+            {"Correct", "Correct "},
+
+
+            {"setLanguageMessage", "Change Language to Japanese"},
         };
     }
 }
