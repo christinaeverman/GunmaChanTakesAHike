@@ -5,6 +5,13 @@ import com.badlogic.gdx.graphics.Color;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/* These are seasonal assets.
+ *
+ * To add a new seasonal asset, add the following line to this file:
+ * public static <asset_type> <asset_name> = currentSeason.<asset_name>;
+ *
+ * Then, go to each season class and override the new asset.
+ * */
 abstract public class Season {
     public static Season currentSeason = Season.getSeason();
 
@@ -16,8 +23,6 @@ abstract public class Season {
     public static Color color3 = currentSeason.color3;
     public static Color color4 = currentSeason.color4;
     public static Color color5 = currentSeason.color5;
-
-    public static Color backgroundColor = currentSeason.backgroundColor;
 
     public static Season getSeason() {
         Date currentDate = new Date();

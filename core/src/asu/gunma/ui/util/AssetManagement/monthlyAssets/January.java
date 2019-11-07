@@ -1,10 +1,16 @@
 package asu.gunma.ui.util.AssetManagement.monthlyAssets;
 
-import asu.gunma.ui.util.AssetManagement.seasonalAssets.Season;
-
+/* These are the assets for the month.
+ *
+ * To add a new asset, add the following line to [asu.gunma.ui.util.AssetManagement.monthlyAssets.Month]:
+ * public static <asset_type> <asset_name> = currentMonth.<asset_name>;
+ *
+ * Then, override the asset in this class with the following line:
+ * public <asset_type> _<asset_name> = <asset_name> = <asset_value>;
+ *
+ * To make the monthly asset default to the current season asset, use the following line:
+ * public <asset_type> _<asset_name> = <asset_name> = currentSeason.<asset_name>;
+ * */
 public class January extends Month {
-    private Season season;
 
-//    public String _grassImage = grassImagePath = "background/grassx2_w.png";
-//    public Color _color1 = color1 = new Color(0xd94c2c01);
 }

@@ -1,9 +1,15 @@
 package asu.gunma.ui.util.AssetManagement.seasonalAssets;
 import com.badlogic.gdx.graphics.Color;
 
+/* These are the assets for the season.
+ *
+ * To add a new asset, add the following line to [asu.gunma.ui.util.AssetManagement.seasonalAssets.Season]:
+ * public static <asset_type> <asset_name> = currentSeason.<asset_name>;
+ *
+ * Then, override the asset in this class with the following line:
+ * public <asset_type> _<asset_name> = <asset_name> = <asset_value>;
+ * */
 public class Spring extends Season {
-    public Color _backgroundColor = backgroundColor = Color.BLACK;
-
     public String _grassImage = grassImagePath = "background/grassx2.png";
     public String _mountainImage = mountainImagePath = "background/mountainx3.png";
 

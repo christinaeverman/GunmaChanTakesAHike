@@ -7,20 +7,17 @@ import java.util.Date;
 
 import asu.gunma.ui.util.AssetManagement.seasonalAssets.Season;
 
+/* These are monthly assets.
+*
+* To add a new monthly asset, add the following line to this file:
+* public static <asset_type> <asset_name> = currentMonth.<asset_name>;
+*
+* Then, go to each month class and override the new asset.
+* */
 abstract public class Month extends Season {
     public static Month currentMonth = Month.getMonth();
 
-//    public static Color color1 = currentMonth.color1;
-//    public static Color color2 = currentMonth.color2;
-//    public static Color color3 = currentMonth.color3;
-//    public static Color color4 = currentMonth.color4;
-//    public static Color color5 = currentMonth.color5;
-
     public static Color backgroundColor = currentMonth.backgroundColor;
-
-//    public String grassImagePath;
-
-//    public static Season season = Season.getSeason();
 
     public static Month getMonth() {
         Date currentDate = new Date();
@@ -59,6 +56,4 @@ abstract public class Month extends Season {
             return new December();
         }
     }
-
-
 }
