@@ -24,8 +24,11 @@ import java.util.ArrayList;
 
 import asu.gunma.DatabaseInterface.DbInterface;
 import asu.gunma.DbContainers.VocabWord;
+import asu.gunma.MiniGames.Controllers.AsteroidGameController;
 import asu.gunma.MiniGames.Controllers.WordScrambleGameController;
+import asu.gunma.MiniGames.Models.AsteroidGameModel;
 import asu.gunma.MiniGames.Models.WordScrambleGameModel;
+import asu.gunma.MiniGames.Views.AsteroidGameView;
 import asu.gunma.MiniGames.Views.WordScrambleGameView;
 import asu.gunma.speech.ActionResolver;
 import asu.gunma.ui.screen.game.FlashcardScreen;
@@ -183,38 +186,26 @@ public class MainMenuScreen implements Screen {
             public void clicked(InputEvent event, float x, float y) {
                 gameMusic.pause();
                 gameMusic.dispose();
-                //play GameFirst music
-                // gameMusic = new Music
                 WordScrambleGameModel wordScrambleModel = new WordScrambleGameModel(0, activeVList);
                 WordScrambleGameController wordScrambleController = new WordScrambleGameController(wordScrambleModel);
                 WordScrambleGameView wordScrambleView = new WordScrambleGameView(game, speechGDX, gameMusic, game.getScreen(), prefs, wordScrambleController);
                 game.setScreen(wordScrambleView);
 
+                // debugging
                 System.out.println("PRINTING ACTIVE VOCAB LIST!");
                 for (VocabWord itr : wordScrambleModel.getActiveVocabList())
                     System.out.println(itr.getEngSpelling());
-                //for (String itr : wordScrambleController.WordScrambleModel.getscrambledList())
-                //    System.out.println(itr.getEngSpelling());
             }
         });
-        // we can change where the following two buttons are located on the main menu or elsewhere, but I put these in for debugging purposes
         buttonMiniGameSecond.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 gameMusic.pause();
                 gameMusic.dispose();
-                //play GameFirst music
-                // gameMusic = new Music
-                WordScrambleGameModel wordScrambleModel = new WordScrambleGameModel(0, activeVList);
-                WordScrambleGameController wordScrambleController = new WordScrambleGameController(wordScrambleModel);
-                WordScrambleGameView wordScrambleView = new WordScrambleGameView(game, speechGDX, gameMusic, game.getScreen(), prefs, wordScrambleController);
-                game.setScreen(wordScrambleView);
-
-                System.out.println("PRINTING ACTIVE VOCAB LIST!");
-                for (VocabWord itr : wordScrambleModel.getActiveVocabList())
-                    System.out.println(itr.getEngSpelling());
-                //for (String itr : wordScrambleController.WordScrambleModel.getscrambledList())
-                //    System.out.println(itr.getEngSpelling());
+                AsteroidGameModel asteroidGameModel = new AsteroidGameModel(1, 0, activeVList);
+                AsteroidGameController asteroidController = new AsteroidGameController(asteroidGameModel);
+                AsteroidGameView asteroidView = new AsteroidGameView(game, speechGDX, gameMusic, game.getScreen(), prefs, asteroidController);
+                game.setScreen(asteroidView);
             }
         });
         buttonOptionMenu.addListener(new ClickListener() {

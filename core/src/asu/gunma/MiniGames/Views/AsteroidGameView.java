@@ -17,7 +17,10 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
+
+import asu.gunma.MiniGames.Controllers.AsteroidGameController;
 import asu.gunma.MiniGames.Controllers.WordScrambleGameController;
+import asu.gunma.MiniGames.Models.AsteroidGameModel;
 import asu.gunma.speech.ActionResolver;
 import asu.gunma.ui.util.GradeSystem;
 
@@ -25,9 +28,8 @@ import asu.gunma.ui.util.GradeSystem;
 // You'll want to use the WordScrambleGameController class
 public class AsteroidGameView implements Screen
 {
-    private WordScrambleGameController controller;
+    private AsteroidGameController controller;
     private GradeSystem gradeSystem;
-    private String displayWord;
 
     private Game game;
     private Music gameMusic;
@@ -41,10 +43,8 @@ public class AsteroidGameView implements Screen
     private Stage stage;
 
     private SpriteBatch batch;
-    private Texture texture;
-
+    private Texture asteroidTexture;
     private BitmapFont font;
-    private BitmapFont font2;
 
     FreeTypeFontGenerator generator;
     FreeTypeFontGenerator.FreeTypeFontParameter parameter;
@@ -57,7 +57,7 @@ public class AsteroidGameView implements Screen
     private GlyphLayout displayWordLayout;
     private int targetWidth = 400;
 
-    public AsteroidGameView(Game game, ActionResolver speechGDX, Music music, Screen previous, Preferences prefs, WordScrambleGameController controller)
+    public AsteroidGameView(Game game, ActionResolver speechGDX, Music music, Screen previous, Preferences prefs, AsteroidGameController controller)
     {
         this.game = game;
         this.speechGDX = speechGDX;
@@ -68,60 +68,35 @@ public class AsteroidGameView implements Screen
 
         //font file
         final String FONT_PATH = "irohamaru-mikami-Regular.ttf";
-
         generator = new FreeTypeFontGenerator(Gdx.files.internal(FONT_PATH));
         parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
         parameter2 = new FreeTypeFontGenerator.FreeTypeFontParameter();
+
+        asteroidTexture = new Texture("circle.png");
     }
 
     // Override Screen class methods
     @Override
     public void show()
     {
-        Gdx.gl.glClearColor(.8f, 1, 1, 1);
+        // Black background
+        Gdx.gl.glClearColor(0, 0, 0, 1);
         stage = new Stage();
-
         batch = new SpriteBatch();
-        //texture = new Texture("title_gunma.png");
-
         Gdx.input.setInputProcessor(stage);
 
-        displayWord = controller.getScrambledList().get(listCounter);
-        parameter.characters = displayWord;
-        parameter.size = 70;
-        parameter.color = Color.BLACK;
-        font = generator.generateFont(parameter);
         parameter2.size = 30;
-        parameter2.color = Color.BLACK;
-        font2 = generator.generateFont(parameter2);
-
-        displayWordLayout = new GlyphLayout();
-        displayWordLayout.setText(font, displayWord, Color.BLACK, targetWidth, Align.center, true);
+        parameter2.color = Color.WHITE;
+        font = generator.generateFont(parameter2);
 
         TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
         textButtonStyle.pressedOffsetX = 1;
         textButtonStyle.pressedOffsetY = -1;
-        textButtonStyle.font = font2;
-        textButtonStyle.fontColor = Color.BLACK;
+        textButtonStyle.font = font;
+        textButtonStyle.fontColor = Color.WHITE;
 
         speakButton = new TextButton("Speak", textButtonStyle);
         speakButton.setPosition(100 , Gdx.graphics.getHeight() - 550);
-
-        speakButton.addListener(new ClickListener()
-        {
-            @Override
-            public void clicked(InputEvent event, float x, float y)
-            {
-                try
-                {
-                    speechGDX.listenOnce();
-                }
-                catch (Exception e)
-                {
-                    System.out.println(e);
-                }
-            }
-        });
 
         stage.addActor(speakButton);
     }
@@ -135,30 +110,7 @@ public class AsteroidGameView implements Screen
         stage.draw();
 
         batch.begin();
-        font.draw(batch, displayWordLayout, 300, 350);
-
-        String spokenWord = speechGDX.getWord();
-        String cWords = controller.getActiveVocabList().get(listCounter).getCorrectWords();
-        String[] correctWords = cWords.split("\\s*,\\s*");
-        boolean correct = gradeSystem.grade(correctWords, spokenWord);
-
-        // check if the word that was spoken matches the correct pronunciation of the word
-        // if it does, then display the green circle image, increase the score, and proceed to the next scrambled word
-        if (correct)
-        {
-            System.out.println("Correct!");
-            listCounter++;
-            System.out.println(controller.increaseScore());
-            displayWord = controller.getCurrentScrambledWord(listCounter);
-        }
-        // if it doesn't, then display the red X and proceed to the next scrambled word
-        // scrambled words and the correct spelling association can be accessed through controller.getActiveVocabList() and controller.getScrambledWordList() using listCounter
-
-        parameter.characters = displayWord;
-        parameter.size = 70;
-        parameter.color = Color.BLACK;
-        font = generator.generateFont(parameter);
-        displayWordLayout.setText(font, displayWord, Color.BLACK, targetWidth, Align.center, true);
+        batch.draw(asteroidTexture, 300, 300, 100, 100);
         batch.end();
     }
 
@@ -189,8 +141,8 @@ public class AsteroidGameView implements Screen
     @Override
     public void dispose()
     {
-        //font.dispose();
-        //batch.dispose();
-        //stage.dispose();
+        font.dispose();
+        batch.dispose();
+        stage.dispose();
     }
 }

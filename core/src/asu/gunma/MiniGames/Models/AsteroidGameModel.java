@@ -13,12 +13,12 @@ public class AsteroidGameModel
     private ArrayList<VocabWord> activeVocabList; // list of words that may be included in the mini-game
     private ArrayList<Asteroid> asteroidList;
 
-    public AsteroidGameModel(int level, int score, ArrayList<VocabWord> activeVocabList, ArrayList<Asteroid> asteroidList)
+    public AsteroidGameModel(int level, int score, ArrayList<VocabWord> activeVocabList)
     {
         setLevel(level);
         setScore(score);
         setActiveVocabList(activeVocabList);
-        setAsteroidList(asteroidList);
+        setAsteroidList(null);
     }
 
     // get methods

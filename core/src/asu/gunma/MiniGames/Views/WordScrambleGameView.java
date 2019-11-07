@@ -89,7 +89,6 @@ public class WordScrambleGameView implements Screen
     {
         Gdx.gl.glClearColor(.8f, 1, 1, 1);
         stage = new Stage();
-
         batch = new SpriteBatch();
         //texture = new Texture("title_gunma.png");
 
