@@ -37,6 +37,7 @@ public class MainMenuScreen implements Screen {
     public Music gameMusic;
     public static float masterVolume = 5;
     public ArrayList<VocabWord> activeVList = new ArrayList<>();
+    private GameAssets gameAssets;
 
     // Using these are unnecessary but will make our lives easier.
     private Stage stage;
@@ -69,19 +70,20 @@ public class MainMenuScreen implements Screen {
     FreeTypeFontGenerator.FreeTypeFontParameter parameter2;
     Preferences prefs;
 
-    public MainMenuScreen(Game game, ActionResolver speechGDX, Music music, DbInterface dbCallback, ArrayList<VocabWord> activeList, Preferences prefs) {
+    public MainMenuScreen(Game game, ActionResolver speechGDX, Music music, DbInterface dbCallback, ArrayList<VocabWord> activeList, Preferences prefs, GameAssets gameAssets) {
         this.game = game;
         this.prefs = prefs;
         this.speechGDX = speechGDX;
         this.gameMusic = music;
         this.dbCallback = dbCallback;
         this.activeVList = activeList;
+        this.gameAssets = gameAssets;
     }
 
     @Override
     public void show() {
         //font file
-        generator = new FreeTypeFontGenerator(Gdx.files.internal(GameAssets.fontPath));
+        generator = new FreeTypeFontGenerator(Gdx.files.internal(gameAssets.fontPath));
 
         //font for vocab word
         parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
@@ -93,12 +95,12 @@ public class MainMenuScreen implements Screen {
         parameter.color = Color.BLACK;
         font = generator.generateFont(parameter);
 
-        Color bgColor = GameAssets.backgroundColor;
+        Color bgColor = gameAssets.backgroundColor;
         Gdx.gl.glClearColor(bgColor.r, bgColor.g, bgColor.b, bgColor.a);
         stage = new Stage();
 
         batch = new SpriteBatch();
-        texture = new Texture(GameAssets.titleGunmaPath);
+        texture = new Texture(gameAssets.titleGunmaPath);
 
         Gdx.input.setInputProcessor(stage);
 
@@ -109,14 +111,14 @@ public class MainMenuScreen implements Screen {
         table = new Table();
         table.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
-        Skin skin = GameAssets.getColorSkin(GameAssets.color2, "color2");
+        Skin skin = gameAssets.getColorSkin(gameAssets.color2, "color2");
         TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
         //textButtonStyle.up = skin.getDrawable("button.up");
         //textButtonStyle.down = skin.getDrawable("button.down");
         textButtonStyle.pressedOffsetX = 1;
         textButtonStyle.pressedOffsetY = -1;
         textButtonStyle.font = font;
-        textButtonStyle.up = skin.newDrawable("color2", GameAssets.color2);
+        textButtonStyle.up = skin.newDrawable("color2", gameAssets.color2);
 
         // IMPORTANT: needs localization support
         buttonTutorial = new TextButton("Video Tutorials", textButtonStyle);
@@ -159,7 +161,7 @@ public class MainMenuScreen implements Screen {
                 gameMusic.dispose();
                 //play flashcard music
                 //gameMusic = new Music
-                game.setScreen(new FlashcardScreen(game, speechGDX, gameMusic, dbCallback, game.getScreen(), activeVList, prefs));
+                game.setScreen(new FlashcardScreen(game, speechGDX, gameMusic, dbCallback, game.getScreen(), activeVList, prefs, gameAssets));
             }
         });
         buttonGameFirst.addListener(new ClickListener() {
@@ -169,7 +171,7 @@ public class MainMenuScreen implements Screen {
                 gameMusic.dispose();
                 //play GameFirst music
                 // gameMusic = new Music
-                game.setScreen(new GameScreen(game, speechGDX, gameMusic, dbCallback, game.getScreen(), activeVList, prefs));
+                game.setScreen(new GameScreen(game, speechGDX, gameMusic, dbCallback, game.getScreen(), activeVList, prefs, gameAssets));
 
             }
         });
@@ -181,7 +183,7 @@ public class MainMenuScreen implements Screen {
                 gameMusic.dispose();
                 //play OptionMenu music
                 //gameMusic = new Music
-                game.setScreen(new OptionMenu(game, speechGDX, gameMusic, dbCallback, game.getScreen(),  activeVList, prefs));
+                game.setScreen(new OptionMenu(game, speechGDX, gameMusic, dbCallback, game.getScreen(),  activeVList, prefs, gameAssets));
             }
         });
 

@@ -62,6 +62,7 @@ public class GameScreen implements Screen {
     private String displayWord;
     private List<VocabWord> dbListWords;
     public ArrayList<VocabWord> activeVList;
+    private GameAssets gameAssets;
 
     // Using these are unnecessary but will make our lives easier.
     private Stage stage;
@@ -126,7 +127,7 @@ public class GameScreen implements Screen {
 
     Preferences prefs;
 
-    public GameScreen(Game game, ActionResolver speechGDX, Music music, DbInterface dbCallback, Screen previous, ArrayList<VocabWord> activeList, Preferences prefs) {
+    public GameScreen(Game game, ActionResolver speechGDX, Music music, DbInterface dbCallback, Screen previous, ArrayList<VocabWord> activeList, Preferences prefs, GameAssets gameAssets) {
         this.game = game;
         this.prefs = prefs;
         this.speechGDX = speechGDX;
@@ -134,7 +135,8 @@ public class GameScreen implements Screen {
         this.previousScreen = previous;
         this.gameMusic = music;
         this.activeVList = activeList;
-        gameMusic = Gdx.audio.newMusic(Gdx.files.internal(GameAssets.introMusicPath));
+        this.gameAssets = gameAssets;
+        gameMusic = Gdx.audio.newMusic(Gdx.files.internal(gameAssets.introMusicPath));
         gameMusic.setLooping(false);
         gameMusic.setVolume(masterVolume);
         gameMusic.play();
@@ -151,21 +153,21 @@ public class GameScreen implements Screen {
         stage = new Stage();
 
         batch = new SpriteBatch();
-        gunmaSprite = new Texture(GameAssets.gunmaSpritePath);
-        this.gunmaFaintedSprite = new Texture(GameAssets.gunmaFaintedSpritePath);
+        gunmaSprite = new Texture(gameAssets.gunmaSpritePath);
+        this.gunmaFaintedSprite = new Texture(gameAssets.gunmaFaintedSpritePath);
         //onionIdleSprite = new Texture("")
 
-        background = new Texture(GameAssets.backgroundImagePath);
+        background = new Texture(gameAssets.backgroundImagePath);
         backgroundDrawer = new BackgroundDrawer(this.batch, this.SCREEN_BOTTOM_ADJUST);
         this.livesDrawer = new LivesDrawer(this.batch);
 
         // Animation initializations
-        this.onionWalkAnimation = new Animator(GameAssets.onionWalkAnimationPath, 4, 2, 0.1f);
-        this.gunmaWalkAnimation = new Animator(GameAssets.gunmaWalkAnimationPath, 8, 1, 0.1f);
+        this.onionWalkAnimation = new Animator(gameAssets.onionWalkAnimationPath, 4, 2, 0.1f);
+        this.gunmaWalkAnimation = new Animator(gameAssets.gunmaWalkAnimationPath, 8, 1, 0.1f);
 
         // Game feedback
-        this.correctSprite = new Texture(GameAssets.correctSpritePath);
-        this.incorrectSprite = new Texture(GameAssets.incorrectSpritePath);
+        this.correctSprite = new Texture(gameAssets.correctSpritePath);
+        this.incorrectSprite = new Texture(gameAssets.incorrectSpritePath);
 
         // Spawning variables
         this.enemyPosition = Gdx.graphics.getWidth();
@@ -182,7 +184,7 @@ public class GameScreen implements Screen {
         table.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
         //font file
-        generator = new FreeTypeFontGenerator(Gdx.files.internal(GameAssets.fontPath));
+        generator = new FreeTypeFontGenerator(Gdx.files.internal(gameAssets.fontPath));
 
         //font for vocab word
         parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
@@ -277,11 +279,11 @@ public class GameScreen implements Screen {
                 speechGDX.stopRecognition();
                 isPaused = true;
                 gameMusic.dispose();
-                gameMusic = Gdx.audio.newMusic(Gdx.files.internal(GameAssets.introMusicPath));
+                gameMusic = Gdx.audio.newMusic(Gdx.files.internal(gameAssets.introMusicPath));
                 gameMusic.setLooping(false);
                 gameMusic.setVolume(masterVolume);
                 gameMusic.play();
-                game.setScreen(new MainMenuScreen(game, speechGDX,  gameMusic, dbCallback,activeVList, prefs));
+                game.setScreen(new MainMenuScreen(game, speechGDX,  gameMusic, dbCallback,activeVList, prefs, gameAssets));
                 previousScreen.dispose();
                 dispose(); // dispose of current GameScreen
             }

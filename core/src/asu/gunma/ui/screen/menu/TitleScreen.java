@@ -44,6 +44,7 @@ public class TitleScreen implements Screen {
     private Table table;
     public static float masterVolume = 10;
     public ArrayList<VocabWord> activeVList;
+    private GameAssets gameAssets;
 
     private int testInt = 0;
 
@@ -70,7 +71,7 @@ public class TitleScreen implements Screen {
     FreeTypeFontGenerator.FreeTypeFontParameter parameter2;
     public Preferences prefs;
 
-    public TitleScreen(Game game, ActionResolver speechGDX, DbInterface dbCallback, Music music, ArrayList<VocabWord> arrayList, Preferences prefs) {
+    public TitleScreen(Game game, ActionResolver speechGDX, DbInterface dbCallback, Music music, ArrayList<VocabWord> arrayList, Preferences prefs, GameAssets gameAssets) {
 
         this.game = game;
         this.prefs = prefs;
@@ -78,8 +79,9 @@ public class TitleScreen implements Screen {
         this.dbCallback = dbCallback;
         this.gameMusic = music;
         this.activeVList = arrayList;
+        this.gameAssets = gameAssets;
         //font file
-        generator = new FreeTypeFontGenerator(Gdx.files.internal(GameAssets.fontPath));
+        generator = new FreeTypeFontGenerator(Gdx.files.internal(gameAssets.fontPath));
 
         //font for vocab word
         parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
@@ -91,12 +93,12 @@ public class TitleScreen implements Screen {
 
     @Override
     public void show() {
-        Color bgColor = GameAssets.backgroundColor;
+        Color bgColor = gameAssets.backgroundColor;
         Gdx.gl.glClearColor(bgColor.r, bgColor.g, bgColor.b, bgColor.a);
         stage = new Stage();
 
         batch = new SpriteBatch();
-        texture = new Texture(GameAssets.titleGunmaPath);
+        texture = new Texture(gameAssets.titleGunmaPath);
 
         Gdx.input.setInputProcessor(stage);
 
@@ -111,14 +113,14 @@ public class TitleScreen implements Screen {
         parameter.color = Color.BLACK;
         font = generator.generateFont(parameter);
 
-        Skin skin = GameAssets.getColorSkin(GameAssets.color3, "color3");
+        Skin skin = gameAssets.getColorSkin(gameAssets.color3, "color3");
         TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
         //textButtonStyle.up = skin.getDrawable("button.up");
         //textButtonStyle.down = skin.getDrawable("button.down");
         textButtonStyle.pressedOffsetX = 1;
         textButtonStyle.pressedOffsetY = -1;
         textButtonStyle.font = font;
-        textButtonStyle.up = skin.newDrawable("color3", GameAssets.color3);
+        textButtonStyle.up = skin.newDrawable("color3", gameAssets.color3);
 
         // IMPORTANT: needs localization support
         buttonTutorial = new TextButton("Play", textButtonStyle);
@@ -143,7 +145,7 @@ public class TitleScreen implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Going from TitleScreen to MainMenuScreen");
-                game.setScreen(new MainMenuScreen(game, speechGDX, gameMusic, dbCallback, activeVList, prefs));
+                game.setScreen(new MainMenuScreen(game, speechGDX, gameMusic, dbCallback, activeVList, prefs, gameAssets));
             }
         });
 

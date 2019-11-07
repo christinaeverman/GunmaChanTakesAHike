@@ -44,6 +44,7 @@ public class FlashcardScreen implements Screen {
     private String displayWord;
     private List<VocabWord> dbListWords;
     public ArrayList<VocabWord> vocabWordArrayList;
+    private GameAssets gameAssets;
   
     private final int CORRECT_GREENCIRCLE_DURATION = 80;
     private final int INCORRECT_REDX_DURATION = 80;
@@ -90,7 +91,7 @@ public class FlashcardScreen implements Screen {
 
 
     public FlashcardScreen (Game game, ActionResolver speechGDX, Music music,
-                            DbInterface dbCallback, Screen previousScreen, ArrayList<VocabWord> arrayList, Preferences prefs) {
+                            DbInterface dbCallback, Screen previousScreen, ArrayList<VocabWord> arrayList, Preferences prefs, GameAssets gameAssets) {
         this.game = game;
         this.prefs = prefs;
         this.speechGDX = speechGDX;
@@ -98,7 +99,8 @@ public class FlashcardScreen implements Screen {
         this.dbCallback = dbCallback;
         this.previousScreen = previousScreen;
         this.vocabWordArrayList = arrayList;
-        gameMusic = Gdx.audio.newMusic(Gdx.files.internal(GameAssets.introMusicPath));
+        this.gameAssets = gameAssets;
+        gameMusic = Gdx.audio.newMusic(Gdx.files.internal(gameAssets.introMusicPath));
         gameMusic.setLooping(false);
         gameMusic.setVolume(masterVolume);
         gameMusic.play();
@@ -106,7 +108,7 @@ public class FlashcardScreen implements Screen {
 
     @Override
     public void show() {
-        Color bgColor = GameAssets.backgroundColor;
+        Color bgColor = gameAssets.backgroundColor;
         Gdx.gl.glClearColor(bgColor.r, bgColor.g, bgColor.b, bgColor.a);
         stage = new Stage();
         batch = new SpriteBatch();
@@ -120,10 +122,10 @@ public class FlashcardScreen implements Screen {
         konjackun = new Texture("konjackun.jpg");
         negisan = new Texture("negisan.png");
         index_card = new Texture("index_card.png");*/
-        greenCircle = new Texture(GameAssets.greenCirclePath);
-        redX = new Texture(GameAssets.redXPath);
+        greenCircle = new Texture(gameAssets.greenCirclePath);
+        redX = new Texture(gameAssets.redXPath);
 
-        generator = new FreeTypeFontGenerator(Gdx.files.internal(GameAssets.fontPath));
+        generator = new FreeTypeFontGenerator(Gdx.files.internal(gameAssets.fontPath));
         //font for vocab word
         parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
 
@@ -309,11 +311,11 @@ public class FlashcardScreen implements Screen {
         backButton.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
                 gameMusic.dispose();
-                gameMusic = Gdx.audio.newMusic(Gdx.files.internal(GameAssets.introMusicPath));
+                gameMusic = Gdx.audio.newMusic(Gdx.files.internal(gameAssets.introMusicPath));
                 gameMusic.setLooping(false);
                 gameMusic.setVolume(masterVolume);
                 gameMusic.play();
-                game.setScreen(new MainMenuScreen(game, speechGDX, gameMusic, dbCallback, vocabWordArrayList, prefs));
+                game.setScreen(new MainMenuScreen(game, speechGDX, gameMusic, dbCallback, vocabWordArrayList, prefs, gameAssets));
                 previousScreen.dispose();
                 dispose(); // dispose of current FlashScreen
             }

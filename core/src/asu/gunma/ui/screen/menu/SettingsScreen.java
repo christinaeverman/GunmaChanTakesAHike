@@ -57,15 +57,17 @@ public class SettingsScreen implements Screen {
     private String googleLogoutMessage = "";
     private boolean signedIn = false;
     public Preferences prefs;
+    private GameAssets gameAssets;
 
-    public SettingsScreen(Game game, ActionResolver speechGDX, Music music, DbInterface dbInterface, Screen previousScreen, Preferences prefs){
+    public SettingsScreen(Game game, ActionResolver speechGDX, Music music, DbInterface dbInterface, Screen previousScreen, Preferences prefs, GameAssets gameAssets){
         this.game = game;
         this.prefs = prefs;
         this.speechGDX = speechGDX;
         this.dbInterface = dbInterface;
         this.previousScreen = previousScreen;
         this.gameMusic = music;
-        gameMusic = Gdx.audio.newMusic(Gdx.files.internal(GameAssets.introMusicPath));
+        this.gameAssets = gameAssets;
+        gameMusic = Gdx.audio.newMusic(Gdx.files.internal(gameAssets.introMusicPath));
         gameMusic.setLooping(false);
         gameMusic.setVolume(masterVolume);
         gameMusic.play();
@@ -73,11 +75,11 @@ public class SettingsScreen implements Screen {
 
     @Override
     public void show() {
-        Color bgColor = GameAssets.backgroundColor;
+        Color bgColor = gameAssets.backgroundColor;
         Gdx.gl.glClearColor(bgColor.r, bgColor.g, bgColor.b, bgColor.a);
         stage = new Stage();
         batch = new SpriteBatch();
-        texture = new Texture(GameAssets.titleGunmaPath);
+        texture = new Texture(gameAssets.titleGunmaPath);
 
         Gdx.input.setInputProcessor(stage);
         assetManager = new AssetManager();
@@ -114,7 +116,7 @@ public class SettingsScreen implements Screen {
         googleLogoutButton.getLabel().setAlignment(Align.center);
 
         //font file
-        generator = new FreeTypeFontGenerator(Gdx.files.internal(GameAssets.fontPath));
+        generator = new FreeTypeFontGenerator(Gdx.files.internal(gameAssets.fontPath));
 
         //font for vocab word
         parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
@@ -155,7 +157,7 @@ public class SettingsScreen implements Screen {
                 googleLoginMessage = "";
                 gameMusic.pause();
                 gameMusic.dispose();
-                game.setScreen(new OptionMenu(game, speechGDX, gameMusic, dbInterface, previousScreen, prefs));
+                game.setScreen(new OptionMenu(game, speechGDX, gameMusic, dbInterface, previousScreen, prefs, gameAssets));
                 dispose(); // dispose of current GameScreen
             }
         });

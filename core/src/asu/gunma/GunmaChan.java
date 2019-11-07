@@ -257,7 +257,9 @@ public class GunmaChan extends Game {
 				System.out.println(v.getEngSpelling());
 			}
 			System.out.println(activeVocabList.size());
-			this.setScreen(new TitleScreen(this, speechGDX, dbCallback, background_music, activeVocabList, prefs));
+
+			GameAssets gameAssets = new GameAssets();
+			this.setScreen(new TitleScreen(this, speechGDX, dbCallback, background_music, activeVocabList, prefs, gameAssets));
 		}
 
 		@Override

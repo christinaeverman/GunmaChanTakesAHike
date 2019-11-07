@@ -61,6 +61,7 @@ public class OptionMenu implements Screen {
     private boolean login = false;
     private boolean deleteButtonsVisible = false;
     private int activeLimit = 10;
+    private GameAssets gameAssets;
 
     private TextButton buttonCustom1, buttonCustom2, buttonCustom3, buttonCustom4, buttonCustom5, buttonCustom6,
             buttonCustom7, buttonCustom8, buttonCustom9, buttonCustom10, buttonCustom11, buttonCustom12,
@@ -85,7 +86,7 @@ public class OptionMenu implements Screen {
     public Preferences prefs;
     File currentFile = null;
 
-    public OptionMenu(Game game, ActionResolver speechGDX, Music music, DbInterface dbInterface, Screen previousScreen, ArrayList<VocabWord> arrayList, Preferences prefs) {
+    public OptionMenu(Game game, ActionResolver speechGDX, Music music, DbInterface dbInterface, Screen previousScreen, ArrayList<VocabWord> arrayList, Preferences prefs, GameAssets gameAssets) {
         this.game = game;
         this.prefs = prefs;
         this.speechGDX = speechGDX;
@@ -93,20 +94,22 @@ public class OptionMenu implements Screen {
         this.dbInterface = dbInterface;
         this.previousScreen = previousScreen;
         this.activeVocabList = arrayList;
-        gameMusic = Gdx.audio.newMusic(Gdx.files.internal(GameAssets.introMusicPath));
+        this.gameAssets = gameAssets;
+        gameMusic = Gdx.audio.newMusic(Gdx.files.internal(gameAssets.introMusicPath));
         gameMusic.setLooping(false);
         gameMusic.setVolume(masterVolume);
         gameMusic.play();
     }
 
-    public OptionMenu(Game game, ActionResolver speechGDX, Music music, DbInterface dbInterface, Screen previousScreen, Preferences prefs) {
+    public OptionMenu(Game game, ActionResolver speechGDX, Music music, DbInterface dbInterface, Screen previousScreen, Preferences prefs, GameAssets gameAssets) {
         this.game = game;
         this.prefs = prefs;
         this.speechGDX = speechGDX;
         this.gameMusic = music;
         this.dbInterface = dbInterface;
         this.previousScreen = previousScreen;
-        gameMusic = Gdx.audio.newMusic(Gdx.files.internal(GameAssets.introMusicPath));
+        this.gameAssets = gameAssets;
+        gameMusic = Gdx.audio.newMusic(Gdx.files.internal(gameAssets.introMusicPath));
         gameMusic.setLooping(false);
         gameMusic.setVolume(masterVolume);
         gameMusic.play();
@@ -121,11 +124,11 @@ public class OptionMenu implements Screen {
     @Override
     public void show() {
         int count = 0;
-        Color bgColor = GameAssets.backgroundColor;
+        Color bgColor = gameAssets.backgroundColor;
         Gdx.gl.glClearColor(bgColor.r, bgColor.g, bgColor.b, bgColor.a);
         stage = new Stage();
         batch = new SpriteBatch();
-        texture = new Texture(GameAssets.titleGunmaPath);
+        texture = new Texture(gameAssets.titleGunmaPath);
 
         Gdx.input.setInputProcessor(stage);
         assetManager = new AssetManager();
@@ -151,7 +154,7 @@ public class OptionMenu implements Screen {
         font.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
 
         //font file
-        generator = new FreeTypeFontGenerator(Gdx.files.internal(GameAssets.fontPath));
+        generator = new FreeTypeFontGenerator(Gdx.files.internal(gameAssets.fontPath));
 
         //font for vocab word
         parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
@@ -1244,18 +1247,18 @@ public class OptionMenu implements Screen {
                 /*if (verified){
                     game.setScreen(new SettingsScreen(game, speechGDX, gameMusic, dbInterface, game.getScreen()));
                 }*/
-              game.setScreen(new SettingsScreen(game, speechGDX, gameMusic, dbInterface, game.getScreen(), prefs));
+              game.setScreen(new SettingsScreen(game, speechGDX, gameMusic, dbInterface, game.getScreen(), prefs, gameAssets));
             }
         });
         backButton.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
                 gameMusic.pause();
                 gameMusic.dispose();
-                gameMusic = Gdx.audio.newMusic(Gdx.files.internal(GameAssets.introMusicPath));
+                gameMusic = Gdx.audio.newMusic(Gdx.files.internal(gameAssets.introMusicPath));
                 gameMusic.setLooping(false);
                 gameMusic.setVolume(masterVolume);
                 gameMusic.play();
-                game.setScreen(new MainMenuScreen(game, speechGDX, gameMusic, dbInterface, activeVocabList, prefs));
+                game.setScreen(new MainMenuScreen(game, speechGDX, gameMusic, dbInterface, activeVocabList, prefs, gameAssets));
                 previousScreen.dispose();
                 dispose(); // dispose of current GameScreen
             }
